@@ -1,55 +1,73 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 import styles from "./Form.module.sass";
-import axios from "axios"
 import { toast } from "react-toastify";
 
-// import Icon from "../Icon";
+const GRAPHQL_ENDPOINT = "https://v1.exhert.com/graphql";
+
+const createEarlyAccessMutation = `
+  mutation CreateEarlyAccess($input: CreateEarlyAccessInput!) {
+    createEarlyAccessSignup(input: $input) {
+      id
+      email
+      country
+    }
+  }
+`;
 
 const Form = ({
   className,
   big,
-  onSubmit,
   placeholder,
-  value,
-  setValue,
-  type,
-  name,
 }) => {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [data, setData] = useState({
-      email: ""
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
+    try {
+      const response = await fetch(GRAPHQL_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: createEarlyAccessMutation,
+          variables: {
+            input: {
+              email,
+              country: "CM", // Default country code for Cameroon
+            }
+          }
+        })
+      });
 
-    const handleChange = (e) => {
-      setData({...data , [e.target.name]: e.target.value});
-    }
+      const result = await response.json();
 
-
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-
-     const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-     }
-
-      try {
-        //  const response = await axios.post("http://localhost:8000/subscribe/signup", data
-          const response = await axios.post("https://email.subscription-v64o.onrender.com/subscribe/signup", data
-          , {headers}
-         );
-         console.log(response.data);
-         if (response.data.message === "Signed up for mailing list") {
-           toast.success(response.data.message);
-         } else if (response.data.message === "This email is in use") {
-           toast.warn(response.data.message, { className: styles["toast-warning"] });
-         }
-      } catch (error) {
-        console.error(error);
-        toast.error(error.message);
+      if (result.errors) {
+        // Handle GraphQL errors
+        const errorMessage = result.errors[0]?.message || "Failed to join waitlist";
+        if (errorMessage.includes("Unique constraint")) {
+          toast.warn("This email is already on the waitlist", { 
+            className: styles["toast-warning"] 
+          });
+        } else {
+          toast.error(errorMessage);
+        }
+      } else {
+        // Success
+        toast.success("Successfully joined the waitlist!");
+        setEmail(""); // Clear the form
       }
-    };
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to join waitlist. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <form
@@ -59,16 +77,21 @@ const Form = ({
       onSubmit={handleSubmit}
     >
       <input
-         className={styles.input}
-         value={data.email}
-         onChange={(e) => handleChange(e)}
-         placeholder="Enter your email"
-         type="email"
-         name="email"
+        className={styles.input}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        type="email"
+        name="email"
         required
+        disabled={isSubmitting}
       />
-      <button className={cn("button",styles.btn)}>
-        Join Waitlist
+      <button 
+        className={cn("button", styles.btn)}
+        type="submit"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Joining..." : "Join Waitlist"}
       </button>
     </form>
   );

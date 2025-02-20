@@ -229,7 +229,8 @@ function App() {
             </Page>
           )}
         /> */}
-        <Route
+        {/**
+          <Route
           exact
           path="/sign-up"
           render={() => (
@@ -238,6 +239,8 @@ function App() {
             </Page>
           )}
         />
+           */}
+        
         {/* <Route
           exact
           path="/forgot-password"

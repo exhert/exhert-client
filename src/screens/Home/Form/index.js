@@ -3,7 +3,7 @@ import cn from "classnames";
 import styles from "./Form.module.sass";
 import { toast } from "react-toastify";
 
-const GRAPHQL_ENDPOINT = process.env.REACT_APP_SERVER_URL;
+const GRAPHQL_ENDPOINT = "https://v1.exhert.com/graphql";
 
 const createEarlyAccessMutation = `
   mutation CreateEarlyAccess($input: CreateEarlyAccessInput!) {

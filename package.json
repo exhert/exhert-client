@@ -72,5 +72,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/exhert/exhert-client/issues"
-  }
+  },
+  "homepage":"https://exhert.com"
 }

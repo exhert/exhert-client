@@ -1,8 +1,6 @@
 import React from "react";
-import Main from "./Main";
-import Education from "./Education";
-import Faq from "./Faq";
 import Question from "./Question";
+import Faq from "./Faq";
 import styles from "./Contact.module.sass";
 
 const Contact = () => {

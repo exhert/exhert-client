@@ -3,16 +3,17 @@ import Main from "./Main";
 import Education from "./Education";
 import Faq from "./Faq";
 import Question from "./Question";
+import styles from "./Contact.module.sass";
 
-const Home = () => {
+const Contact = () => {
   return (
-    <>
-      {/* <Main />
-      <Education />
-      <Faq /> */}
-      <Question />
-    </>
+    <div className={styles.contactWrapper}>
+      <div className={styles.connectedSections}>
+        <Question />
+        <Faq />
+      </div>
+    </div>
   );
 };
 
-export default Home;
+export default Contact;

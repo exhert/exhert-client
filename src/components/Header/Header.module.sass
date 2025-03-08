@@ -1,22 +1,46 @@
 @import ../../styles/helpers
 
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
+
 .header
-    position: relative
-    z-index: 10
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    z-index: 100
     padding: 20px 0
-    box-shadow: inset 0 0px 0 $n6
+    transition: all 0.3s ease
+    background: transparent
+    backdrop-filter: none
+    -webkit-backdrop-filter: none
+    border-bottom: 1px solid rgba(255, 255, 255, 0)
+    
+    &.scrolled
+        padding: 15px 0
+        background: rgba(10, 10, 10, 0.85)
+        backdrop-filter: blur(10px)
+        -webkit-backdrop-filter: blur(10px)
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
+    
     +m
-        padding: 32px 0 24px
-        box-shadow: none
+        padding: 15px 0
+    
     +dark
-        box-shadow: inset 0 0px 0 $n2
-        +m
-            box-shadow: none
+        background: transparent
+        &.scrolled
+            background: rgba(10, 10, 10, 0.85)
+            backdrop-filter: blur(10px)
+            -webkit-backdrop-filter: blur(10px)
+    
     &.wide
-        box-shadow: none
         .container
             max-width: 100%
-            padding: 0 20px
+            padding: 0 40px
             +m
                 padding: 0 24px
 
@@ -33,20 +57,27 @@
 
 .logo
     margin-right: 32px
+    transition: transform 0.3s ease
+    
+    // &:hover
+    //     transform: scale(1.05)
+    
     +t
         margin-right: 16px
     +m
         position: relative
         z-index: 15
-        margin-right: auto  
+        margin-right: auto 
+         
+    
     img
-        width: 150px
+        width: 120px
         +w
-           width: 120px 
-        +t
             width: 100px
+        +t
+            width: 80px
         +m 
-            width: 50px
+            width: 80px
 
 .picDesktop
     +m
@@ -61,105 +92,77 @@
     display: flex
     justify-content: flex-end
     align-items: center
-    padding-left: 32px
-    border-left: 0 solid $n6
-    +x
-        padding-left: 0
-        border: none
     +m
         flex-grow: 0
-    +dark
-        border-color: $n3
-    .theme
-        +m
-            display: none
 
 .wrap
-    margin-right: 50px
+    margin-right: 30px
     +m
-        position: absolute
+        position: fixed
         top: 0
         left: 0
-        z-index: 10
+        z-index: 99
         display: flex
         flex-direction: column
         width: 100%
         height: 100vh
         padding: 100px 0 32px
-        background: $n8
+        background: rgba(10, 10, 10, 0.95)
+        backdrop-filter: blur(20px)
+        -webkit-backdrop-filter: blur(20px)
         visibility: hidden
         opacity: 0
-        transition: all .2s
+        transition: all .3s
         +dark
-            background: $n1
+            background: rgba(10, 10, 10, 0.95)
         &.visible
             visibility: visible
             opacity: 1
-    & > .button
-        display: none
-        +m
-            display: flex
-            margin: auto 24px 0
-    .btns
-        display: none
-        +m
-            display: flex
 
 .nav
     display: flex
     +m
         flex-direction: column
-
-.item,
-.nav > div
-    &:not(:last-child)
-        margin-right: 40px
-        +d
-            margin-right: 32px
-        +t
-            margin-right: 20px
-        +m
-            margin: 0
+        align-items: center
 
 .item
-    +dm-sans
-    font-size: 14px
+    position: relative
+    font-size: 16px
     line-height: 40px
-    font-weight: 700
-    color: $n4
+    font-weight: 600
+    color: $light-text
+    margin: 0 20px
     transition: all .2s
+    
+    &:after
+        content: ''
+        position: absolute
+        bottom: -2px
+        left: 0
+        width: 0
+        height: 2px
+        background: $primary-color
+        transition: width 0.3s ease
+    
+    &:hover, &.active
+        color: $primary-color
+        
+        &:after
+            width: 100%
+    
     +m
-        padding: 0 22px
-        border-left: 2px solid transparent
-        +poppins
+        margin: 10px 0
         font-size: 24px
         line-height: 64px
-        font-weight: 600
-    &:hover,
-    &.active
-        color: $n2
-        +dark
-            color: $n8
-        +m
-            border-color: $p1
+        
+        &:after
+            bottom: -5px
+            height: 3px
 
 .control
     display: flex
     align-items: center
-    .button
-        +m
-            display: none
 
-.settings
-    margin-right: 32px
-    +d
-        margin-right: 16px
-    +t
-        margin-right: 4px
-    
-.activity,
-.notifications,
-.control .button,
 .theme
     margin-right: 20px
     +d
@@ -169,67 +172,39 @@
     +m
         margin-right: 12px
 
-.activity
-    display: flex
-    justify-content: center
-    align-items: center
-    flex-shrink: 0
-    width: 40px
-    height: 40px
-    +m
-        margin-right: 4px
-    svg
-        fill: $n4
-        transition: fill .2s
-    &:hover,
-    &.active
-        svg
-            fill: $n2
-            +dark
-                fill: $n8
-
-.btns
-    display: flex
-    +m
-        margin: auto 16px 0
-    .button
-        +m
-            flex: 0 0 calc(50% - 16px)
-            width: calc(50% - 16px)
-            margin: 0 8px
-        &:not(:last-child)
-            margin-right: 8px
-            +m
-                margin-right: 8px
-
 .burger
     display: none
     +m
         display: block
         position: relative
-        z-index: 15
+        z-index: 101
         margin-left: 12px
         width: 32px
         height: 32px
         background: none
-        -webkit-tap-highlight-color: rgba(0,0,0,0)
-        &.active
-            &:before
-                transform: translateY(0) rotate(-45deg)
-            &:after
-                transform: translateY(0) rotate(45deg)
-        &:before,
-        &:after
+        border: none
+        cursor: pointer
+        
+        &:before, &:after
             content: ''
             position: absolute
-            top: 16px
             left: 6px
             width: 20px
             height: 2px
-            background: $n4
+            background: $light-text
             border-radius: 2px
-            transition: transform .2s
+            transition: transform 0.3s ease, top 0.3s ease
+        
         &:before
-            transform: translateY(-4px)
+            top: 12px
+        
         &:after
-            transform: translateY(3px)
+            top: 20px
+        
+        &.active
+            &:before
+                top: 16px
+                transform: rotate(45deg)
+            &:after
+                top: 16px
+                transform: rotate(-45deg)

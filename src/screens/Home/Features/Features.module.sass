@@ -1,0 +1,171 @@
+@import ../../../styles/helpers
+
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
+
+.section
+  position: relative
+  padding: 100px 0
+  background: linear-gradient(to bottom, lighten($dark-bg, 5%), $dark-bg)
+  overflow: hidden
+  
+  // Add gradient divider at the top
+  &::after
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 6px
+    background: linear-gradient(90deg, rgba($secondary-color, 0.2), rgba($primary-color, 0.3), rgba($secondary-color, 0.2))
+    z-index: 3
+    box-shadow: 0 0 20px rgba($secondary-color, 0.3)
+  
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+    opacity: 0.03
+    z-index: 1
+  
+  +m
+    padding: 80px 0 60px 0
+    
+    // Adjust divider height for mobile
+    &::after
+      height: 4px
+
+.container
+  position: relative
+  z-index: 2
+
+.head
+  margin-bottom: 60px
+  text-align: center
+  
+  +m
+    margin-bottom: 40px
+
+.title
+  margin-bottom: 16px
+  color: $light-text
+  
+  +m
+    font-size: 32px
+
+.subtitle
+  font-size: 20px
+  color: rgba($light-text, 0.8)
+  
+  +m
+    font-size: 18px
+
+// Features Grid
+.features
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 30px
+  
+  +t
+    grid-template-columns: 1fr
+    gap: 24px
+
+.featureCard
+  position: relative
+  display: flex
+  align-items: flex-start
+  padding: 30px
+  background: rgba(255, 255, 255, 0.03)
+  backdrop-filter: blur(10px)
+  -webkit-backdrop-filter: blur(10px)
+  border-radius: 16px
+  border: 1px solid rgba(255, 255, 255, 0.05)
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1)
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease
+  overflow: hidden
+  
+  +m
+    padding: 24px
+
+.iconWrapper
+  position: relative
+  margin-right: 20px
+  flex-shrink: 0
+  
+  +m
+    margin-right: 16px
+
+.iconBg
+  position: absolute
+  top: 0
+  left: 0
+  width: 60px
+  height: 60px
+  background: rgba($secondary-color, 0.1)
+  border-radius: 12px
+  transform: rotate(10deg)
+  
+  +m
+    width: 50px
+    height: 50px
+
+.icon
+  position: relative
+  width: 60px
+  height: 60px
+  display: flex
+  align-items: center
+  justify-content: center
+  color: $secondary-color
+  
+  svg
+    width: 30px
+    height: 30px
+  
+  +m
+    width: 50px
+    height: 50px
+    
+    svg
+      width: 24px
+      height: 24px
+
+.content
+  flex-grow: 1
+
+.cardTitle
+  margin-bottom: 8px
+  font-size: 20px
+  font-weight: 600
+  color: $light-text
+  
+  +m
+    font-size: 18px
+
+.cardDescription
+  font-size: 16px
+  color: rgba($light-text, 0.7)
+  line-height: 1.5
+  
+  +m
+    font-size: 14px
+
+.shine
+  position: absolute
+  top: 0
+  left: -100%
+  width: 100%
+  height: 100%
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent)
+  transition: transform 0.8s ease
+  pointer-events: none
+  
+  .featureCard:hover &
+    transform: translateX(100%) 

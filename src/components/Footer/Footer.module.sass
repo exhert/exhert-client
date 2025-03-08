@@ -1,207 +1,199 @@
 @import ../../styles/helpers
 
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
+
 .footer
     position: relative
     z-index: 10
-    padding: 20px 0
-    box-shadow: inset 0 1px 0 $n6
-    +m
-        padding: 32px 0 24px
-        box-shadow: inset 0 1px 0 $n6
-    +dark
-        box-shadow: inset 0 1px 0 $n2
-        +m
-            box-shadow: inset 0 1px 0 $n2
-    &.wide
-        box-shadow: none
-        .container
-            max-width: 100%
-            padding: 0 20px
-            +m
-                padding: 0 20px
+    background: linear-gradient(to bottom, lighten($dark-bg, 3%), $dark-bg)
+    color: $light-text
+    overflow: hidden
+    
+    &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+        opacity: 0.03
+        z-index: 1
 
 .container
+    position: relative
+    z-index: 2
+    +d
+        padding: 0 40px
+    +t
+        padding: 0 30px
+    +m
+        padding: 0 20px
+
+.footerTop
+    padding: 80px 0 40px
+    border-bottom: 1px solid rgba($light-text, 0.1)
+    
+    +t
+        padding: 60px 0 30px
+    
+    +m
+        padding: 40px 0 20px
+
+.footerContent
     display: flex
     justify-content: space-between
-    align-items: center
-    +d
-        padding: 0 80px
+    
     +t
-        padding: 0 60px
-    +m
-        justify-content: center
-        display: block
-        padding: 0 20px
-        
-        
+        flex-direction: column
+        gap: 40px
 
-.body
-    +m
-        position: relative
-        padding-top: 32px
-
-.col
-    flex: 0 0 30.5%
-    padding: 80px 86px 64px
-    +x
-        padding: 80px 64px 64px
-    +d
-        flex: 0 0 34%
+.footerBrand
+    flex: 0 0 40%
+    
     +t
-        padding: 64px 32px 48px
-    +m
-        padding: 32px 0
-        border-bottom: 1px solid $n6
-        +dark
-            border-color: $n2
-    &:first-child
-        display: flex
-        flex: 0 0 39%
-        padding-left: 0
-        +d
-            flex: 0 0 32%
-        +m
-            display: block
-    &:nth-child(3)
-        padding-right: 0
-    &:nth-child(2),
-    &:nth-child(3)
-        border-left: 1px solid $n6
-        +m
-            border-left: none
-        +dark
-            border-color: $n2
+        text-align: center
 
 .logo
-    display: flex
-    justify-content: center
-    align-items: center
-    margin-right: 32px
-    +t
-        margin-right: 16px
-    +m
-        position: relative
-        z-index: 15
-        margin-right: auto 
-        margin-bottom: 30px 
-    img
-        width: 36px
-        +w
-           width: 42px 
-        +t
-            width: 30px     
-            
-
-.picDesktop
-    +m
-        display: none
-
-.picMobile
-    display: none
-    +m
-        display: block
-
-.item
-    .category
-        display: none
-        +m
-            display: flex
-            align-items: center
-            margin-bottom: 0
-        svg
-            margin-left: auto
-            fill: $n4
-            transition: transform .2s
-    &.active
-        +m
-            .category
-                svg
-                    transform: rotate(180deg)
-            .menu
-                display: flex
-
-.menu
-    display: flex
-    flex-direction: column
-    align-items: flex-start
-    +m
-        display: none
-        padding-top: 40px
-
-.link
-    +button-2
-    color: $n4
-    transition: color .2s
-    &:hover,
-    &.active
-        color: $n2
-        +dark
-            color: $n8
-    &:not(:last-child)
-        margin-bottom: 24px
-
-.category
-    margin-bottom: 41px
-    +hairline-2
-
-.info
-    +caption-1
-    p
-        &:not(:last-child)
-            margin-bottom: 8px
-    &:not(:last-child)
-        margin-bottom: 24px
-
-.foot
+    display: inline-block
+    margin-bottom: 20px
     
-    display: flex
-    padding: 10px 0 5px     
-    +dark
-        border-color: none
-    +m 
-       display: block 
-       align-items: center   
+    +t
+        margin-bottom: 15px
 
-.copyright
-    display: flex
-    justify-content: center
-    margin-right: 24px
-    +body-2
-    color: $n4
+.logoImage
+    height: 40px
+    
     +m
-        margin: 0 24px 10px
+        height: 32px
+
+.tagline
+    font-size: 16px
+    line-height: 1.5
+    color: rgba($light-text, 0.7)
+    margin-bottom: 24px
+    
+    +m
+        font-size: 14px
         margin-bottom: 20px
 
 .socials
     display: flex
-    justify-content: center
+    flex-wrap: wrap
+    gap: 12px
     
-
+    +t
+        justify-content: center
 
 .social
     display: flex
-    background-color: rgba(0, 0, 0, 0.1)
-    border-radius: 100%
-    justify-content: center
     align-items: center
-    flex-shrink: 0
-    width: 30px
-    height: 30px
-    transition: all .2s
-    +dark
-        color: $white
-        background-color: $n2
-    svg
-        fill: $d1
-        +dark
-            fill: $n9
-        transition: fill .2s
+    padding: 10px 16px
+    border-radius: 5px
+    background: rgba($light-text, 0.05)
+    color: $primary-color
+    transition: all 0.3s ease
+    border: 1px solid rgba($light-text, 0.08)
+    
+    &:hover
+        background: rgba($primary-color, 0.1)
+        color: $primary-color
+        border-color: rgba($primary-color, 0.2)
+    
+    +m
+        padding: 8px 12px
 
-    &:hover 
-        background-color: rgba(0, 0, 0, 0.3)
-        svg
-            fill: $d1
-            +dark
-                fill: $n9
-    &:not(:last-child)
-        margin-right: 24px
+.socialLabel
+    margin-left: 10px
+    font-size: 14px
+    color: rgba($light-text, 0.8)
+    
+    +m
+        font-size: 13px
+
+.footerNav
+    flex: 0 0 50%
+    display: flex
+    justify-content: space-between
+    
+    +t
+        flex-wrap: wrap
+        gap: 30px
+    
+    +m
+        flex-direction: column
+        gap: 30px
+
+.navColumn
+    flex: 1
+    
+    +t
+        flex: 0 0 45%
+    
+    +m
+        text-align: center
+
+.navTitle
+    font-size: 18px
+    font-weight: 600
+    margin-bottom: 24px
+    color: $light-text
+    
+    +m
+        font-size: 16px
+        margin-bottom: 16px
+
+.navLinks
+    display: flex
+    flex-direction: column
+    gap: 12px
+
+.navLink
+    font-size: 16px
+    color: rgba($light-text, 0.7)
+    transition: color 0.3s ease
+    
+    &:hover, &.active
+        color: $primary-color
+    
+    +m
+        font-size: 14px
+
+.newsletterText
+    font-size: 14px
+    line-height: 1.5
+    color: rgba($light-text, 0.7)
+    margin-bottom: 16px
+    
+    +m
+        text-align: center
+
+.newsletterForm
+    // Add any specific styling needed for the newsletter form
+    width: 100%
+    
+    +m
+        max-width: 300px
+        margin: 0 auto
+
+.footerBottom
+    padding: 24px 0
+    
+    +m
+        padding: 20px 0
+    
+    .container
+        display: flex
+        justify-content: center
+        align-items: center
+
+.copyright
+    font-size: 14px
+    color: rgba($light-text, 0.6)
+    
+    +m
+        text-align: center

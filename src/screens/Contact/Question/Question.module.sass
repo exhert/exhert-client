@@ -1,87 +1,164 @@
 @import ../../../styles/helpers
 
-.form
-    max-width: 546px
-    margin: 0 auto
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
 
-.title
-    margin-bottom: 48px
-    text-align: center
-    +m
-        margin-bottom: 40px    
-
-.fieldset
-    margin: -12px -6px 40px
-
-.field
-    &:not(:last-child)
-        margin-bottom: 32px
-
-.label
-    margin-bottom: 24px
-    +hairline-2
-    color: $n5
-
-.variants
-    display: flex
-    margin: 0 -10px
-
-.radio
-    position: relative
-    flex: 0 0 calc(50% - 20px)
-    width: calc(50% - 20px)
-    margin: 0 10px
-    user-select: none 
-    cursor: pointer
-    -webkit-tap-highlight-color: rgba(0,0,0,0)
-
-.input
+.section
+  position: relative
+  padding: 80px 0
+  background: linear-gradient(to bottom, $dark-bg, lighten($dark-bg, 3%))
+  overflow: hidden
+  
+  &::before
+    content: ""
     position: absolute
     top: 0
     left: 0
-    opacity: 0 
-    &:checked + .inner
-        box-shadow: inset 0 0 0 2px $p1
-        +dark
-            box-shadow: inset 0 0 0 2px $p1
+    width: 100%
+    height: 100%
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+    opacity: 0.03
+    z-index: 1
+  
+  +m
+    padding: 60px 0
 
-.inner
-    display: flex
-    justify-content: center
-    align-items: center
-    height: 80px
-    padding: 12px
-    border-radius: 8px
-    background: $n8
-    transition: box-shadow .2s
-    +m
-        height: 48px
-    &:hover
-        box-shadow: inset 0 0 0 2px $n6
-    +dark
-        background: $n2
-        &:hover
-            box-shadow: inset 0 0 0 2px $n3
+.container
+  position: relative
+  z-index: 2
 
-.icon
-    display: flex
-    justify-content: center
-    align-items: center
-    flex-shrink: 0
-    width: 44px
-    height: 44px
-    margin-right: 14px
-    border-radius: 50%
-    +m
-        display: none
-    svg
-        fill: $n8
+.form
+  max-width: 546px
+  margin: 0 auto
+  position: relative
+  z-index: 2
 
-.text
-    +button-1
-    color: $n2
-    +dark
-        color: $n8
+.title
+  margin-bottom: 48px
+  text-align: center
+  color: $light-text
+  
+  +m
+    margin-bottom: 40px
+
+.fieldset
+  margin-bottom: 40px
+
+// Added new class for field wrapper with increased spacing
+.fieldWrapper
+  margin-bottom: 40px  // Increased from 32px to 40px
+  
+  &:last-child
+    margin-bottom: 0
+
+.field
+  width: 100%
 
 .btns
-    text-align: right
+  text-align: right
+  margin-top: 48px  // Added top margin for better spacing
+  
+  +m
+    text-align: center
+
+.button
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  height: 48px
+  padding: 0 32px
+  background: linear-gradient(90deg, $primary-color, darken($primary-color, 10%))
+  border-radius: 8px
+  font-size: 16px
+  font-weight: 600
+  color: $dark-bg
+  transition: all 0.3s ease
+  border: none
+  cursor: pointer
+  
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: 0 8px 16px rgba($primary-color, 0.3)
+  
+  &:disabled
+    opacity: 0.7
+    cursor: not-allowed
+    transform: none
+    box-shadow: none
+  
+  &.buttonLoading
+    background: linear-gradient(90deg, darken($primary-color, 10%), $primary-color)
+    
+  +m
+    width: 100%
+    max-width: 300px
+
+.loadingSpinner
+  display: inline-block
+  width: 20px
+  height: 20px
+  border: 2px solid rgba($dark-bg, 0.3)
+  border-radius: 50%
+  border-top-color: $dark-bg
+  animation: spin 1s ease-in-out infinite
+  
+  @keyframes spin
+    to
+      transform: rotate(360deg)
+
+.backgroundElements
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 1
+  pointer-events: none
+
+.element1, .element2, .element3
+  position: absolute
+  border-radius: 50%
+  filter: blur(40px)
+  opacity: 0.1
+
+.element1
+  top: 10%
+  left: 10%
+  width: 300px
+  height: 300px
+  background: radial-gradient(circle, rgba($primary-color, 0.6), transparent 70%)
+  
+  +m
+    width: 200px
+    height: 200px
+    top: 5%
+    left: 5%
+
+.element2
+  bottom: 20%
+  right: 15%
+  width: 250px
+  height: 250px
+  background: radial-gradient(circle, rgba($secondary-color, 0.5), transparent 70%)
+  
+  +m
+    width: 150px
+    height: 150px
+    bottom: 15%
+    right: 5%
+
+.element3
+  top: 40%
+  right: 25%
+  width: 150px
+  height: 150px
+  background: radial-gradient(circle, rgba(mix($primary-color, $secondary-color, 50%), 0.4), transparent 70%)
+  
+  +m
+    width: 100px
+    height: 100px
+    top: 35%
+    right: 15%

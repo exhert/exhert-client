@@ -1,0 +1,41 @@
+@import ../../styles/helpers
+
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
+
+.contactWrapper
+  overflow: hidden
+  width: 100%
+  background: $dark-bg
+  color: $light-text
+
+.connectedSections
+  display: flex
+  flex-direction: column
+  
+  // Remove any margins between sections
+  & > div
+    margin-top: 0
+    margin-bottom: 0
+    padding-top: 80px
+    padding-bottom: 80px
+    
+    +m
+      padding-top: 60px
+      padding-bottom: 60px
+    
+  // Add dividers between sections instead of margins
+  & > div:not(:last-child)
+    position: relative
+    
+    &::after
+      content: ""
+      position: absolute
+      bottom: 0
+      left: 10%
+      right: 10%
+      height: 1px
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent) 

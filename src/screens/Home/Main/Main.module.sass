@@ -1,130 +1,482 @@
 @import ../../../styles/helpers
 
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
+$gray-text: rgba(255, 255, 255, 0.7)
+
+// Mixins
+@mixin glassmorphism
+  background: rgba(255, 255, 255, 0.15)
+  backdrop-filter: blur(20px)
+  -webkit-backdrop-filter: blur(20px)
+  border: 1px solid rgba(255, 255, 255, 0.2)
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05), 0 1px 4px rgba(255, 255, 255, 0.1)
+
+@mixin neumorphic
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2), -8px -8px 16px rgba(255, 255, 255, 0.05)
+  transition: transform 0.2s ease, box-shadow 0.2s ease
+  
+  &:active
+    transform: scale(0.98)
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.05), inset 4px 4px 8px rgba(0, 0, 0, 0.2), inset -4px -4px 8px rgba(255, 255, 255, 0.05)
+
 .main
-    position: relative
-    padding-top: 160px
-    display: flex
-    overflow: hidden
-    +d
-        padding-top: 80px
-    +m
-        padding-top: 32px
-        
-.wrap
-    position: relative
-    z-index: 3
-    max-width: 913px
-    margin-bottom: 143px
-    +p
-        width: 50%
-    +d
-        margin-bottom: 80px
-        width: 50%
-    +t
-        width: 50%  
-    +m
-        width: 100%
-        text-align: center 
-        
+  position: relative
+  overflow: hidden
+  background: $dark-bg
+  margin-bottom: 0
+  padding-bottom: 0
 
-.title
-    margin-bottom: 20px
-.txt
-    color: $n9
+// Hero Section
+.hero
+  position: relative
+  min-height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 40px 0 0 0
+  overflow: hidden
+  margin-bottom: 0
+  
+  +d
+    min-height: auto
+    padding: 120px 0 0 0
+    margin-bottom: 0
+  
+  +m
+    padding: 64px 0 0 0
+    min-height: 80vh
+    margin-bottom: 0
+  
+  +s
+    min-height: 100vh
+    margin-bottom: 0
 
-.text
-    margin-bottom: 32px
-    +body-2
-    +t
-        max-width: 400px
-    +m   
-        max-width: 100%
-.tex
-    margin: 30px 0
-    +body-2
-         
-
-.socialLink
-    margin-top: 30px
-    display: flex
-    align-items: center
-
-    width: 100% 
-    +m
-       width: 70% 
-    +s
-        width: 100%    
-        
-.titl
-    margin-top: 20px
-
-.socials
-    display: flex
-    justify-content: center
-    margin-top: auto
-    margin-bottom: auto
-    margin-left: 50px
-    +m
-        margin-right: none
-
-.social
-    display: flex
-    background-color: rgba(0, 0, 0, 0.1)
-    border-radius: 100%
-    justify-content: center
-    align-items: center
-    flex-shrink: 0
-    width: 30px
-    height: 30px
-    transition: all .2s
-    +dark
-        color: $white
-        background-color: $n2 
-    svg
-        fill: $d1
-        +dark
-            fill: $n9
-        transition: fill .2s
-
-    &:hover 
-        background-color: rgba(0, 0, 0, 0.3)
-        svg
-            fill: $d1
-            +dark
-                fill: $n9
-    &:not(:last-child)
-        margin-right: 24px
-          
-
-
-
-.button
-    margin-bottom: 80px
-    +d
-        margin-bottom: 0
-    +m
-       width: 100%   
-
-.scroll
-    +d
-        display: none !important
+// Background
+.heroBackground
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 0
+  
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+    opacity: 0.75
+    filter: brightness(0.85) contrast(1.1)
     
-.bg
-    position: absolute
-    top: -200px
-    right: calc(50% - 750px)
-    width: 913px
-    pointer-events: none
-    +d
-        top: -120px
-        right: calc(50% - 550px)
-        width: 600px
     +t
-        right: calc(50% - 500px)
+      object-position: 20% center
+    
     +m
-        position: static
-        width: auto
-        +s
-            margin: 0 -64px
-    img
-        width: 100%
+      object-position: 20% center
+    
+    +s
+      object-position: left center
+
+.gradientOverlay
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: radial-gradient(circle at 70% 30%, rgba($secondary-color, 0.25) 0%, rgba(0, 0, 0, 0) 50%), radial-gradient(circle at 30% 70%, rgba($primary-color, 0.15) 0%, rgba(0, 0, 0, 0) 50%), linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%)
+  z-index: 1
+  mix-blend-mode: overlay
+
+.noiseTexture
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+  opacity: 0.05
+  z-index: 2
+  pointer-events: none
+
+// Content
+.heroContent
+  position: relative
+  z-index: 3
+  max-width: 1000px
+  margin: 0 auto
+  text-align: center
+  padding: 0 20px 0 20px
+  
+  +m
+    max-width: 100%
+    padding: 0 16px 0 16px
+
+.heroTagline
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-bottom: 24px
+  animation: fadeInUp 0.8s ease-out
+
+.tag
+  font-size: 16px
+  font-weight: 700
+  text-transform: uppercase
+  letter-spacing: 2px
+  color: $primary-color
+  padding: 8px 16px
+  border-radius: 20px
+  background: rgba($primary-color, 0.1)
+  display: inline-block
+  margin-bottom: 16px
+  box-shadow: 0 2px 10px rgba($primary-color, 0.2)
+  
+  +m
+    font-size: 14px
+    margin-bottom: 12px
+
+.tagDivider
+  width: 30px
+  height: 1px
+  background: rgba($light-text, 0.3)
+  margin: 0 12px
+
+.tagline
+  font-size: 14px
+  color: $gray-text
+  
+  +m
+    font-size: 12px
+
+.heroTitle
+  margin-bottom: 24px
+  animation: fadeInUp 1s ease-out 0.2s both
+  
+  +d
+    margin-bottom: 20px
+  
+  +m
+    margin-bottom: 16px
+
+.titleLine
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-wrap: wrap
+  margin-bottom: 8px
+  
+  &:last-child
+    margin-bottom: 0
+
+.word
+  display: inline-block
+  font-size: 64px
+  line-height: 1.1
+  letter-spacing: -0.02em
+  font-weight: 700
+  color: $light-text
+  margin: 0 8px
+  position: relative
+  
+  +d
+    font-size: 48px
+  
+  +m
+    font-size: 36px
+    margin: 0 4px
+
+.highlight
+  color: $primary-color
+  position: relative
+  
+  &::after
+    content: ""
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 4px
+    background: $primary-color
+    transform: scaleX(0)
+    transform-origin: right
+    transition: transform 0.5s ease
+  
+  &:hover::after
+    transform: scaleX(1)
+    transform-origin: left
+
+.heroSubTitle
+  margin-bottom: 32px
+  font-size: 24px
+  line-height: 1.33333
+  color: $light-text
+  font-weight: 500
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5)
+  animation: fadeInUp 1s ease-out 0.3s both
+  
+  +d
+    font-size: 20px
+  
+  +m
+    font-size: 18px
+
+.heroForm
+  max-width: 500px
+  margin: 0 auto
+  padding: 24px
+  border-radius: 16px
+  background: rgba(255, 255, 255, 0.15)
+  backdrop-filter: blur(20px)
+  -webkit-backdrop-filter: blur(20px)
+  border: 1px solid rgba(255, 255, 255, 0.2)
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05), 0 1px 4px rgba(255, 255, 255, 0.1)
+  transform: translateY(0)
+  transition: transform 0.3s ease, box-shadow 0.3s ease
+  animation: fadeInUp 1s ease-out 0.4s both
+  position: relative
+  z-index: 5
+  
+  &:hover
+    transform: translateY(-5px)
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1)
+  
+  +m
+    padding: 16px
+  
+  :global(.field)
+    transition: transform 0.3s ease, box-shadow 0.3s ease
+    background: rgba(255, 255, 255, 0.1)
+    border: 1px solid rgba(255, 255, 255, 0.3)
+    
+    &:focus-within
+      transform: scale(1.02)
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3)
+  
+  :global(.button)
+    background: $secondary-color
+    color: $light-text
+    font-weight: 600
+    position: relative
+    overflow: hidden
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)
+    transition: transform 0.2s ease, box-shadow 0.2s ease
+    
+    &:active
+      transform: scale(0.98)
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+    
+    &:hover::before
+      content: ""
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 200%
+      height: 200%
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%)
+      transform: translate(-50%, -50%) scale(0)
+      animation: ripple 1.5s infinite
+      pointer-events: none
+      z-index: 1
+
+// Scroll Indicator - repositioned to be just above the bottom edge
+.scrollIndicator
+  position: absolute
+  bottom: 20px
+  left: 50%
+  transform: translateX(-50%)
+  display: flex
+  flex-direction: column
+  align-items: center
+  animation: fadeIn 1s ease-out 1s both
+  z-index: 10
+  
+  // Make it more visible
+  .mouse
+    width: 26px
+    height: 42px
+    border: 2px solid $light-text
+    border-radius: 20px
+    position: relative
+    margin-bottom: 8px
+    background: rgba(0, 0, 0, 0.4) // Darker background for better visibility
+  
+  .wheel
+    width: 4px
+    height: 8px
+    background-color: $primary-color
+    border-radius: 2px
+    position: absolute
+    top: 10px
+    left: 50%
+    transform: translateX(-50%)
+    animation: scrollWheel 1.5s infinite
+  
+  .scrollText
+    font-size: 11px
+    color: $light-text
+    text-transform: uppercase
+    letter-spacing: 2px
+    font-weight: 600
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) // Stronger text shadow
+    background: rgba(0, 0, 0, 0.4) // Darker background
+    padding: 4px 8px
+    border-radius: 4px
+  
+  +d
+    bottom: 25px // Slightly higher on desktop
+  
+  +m
+    bottom: 30px // Even higher on mobile to ensure it's visible
+    
+    .mouse
+      width: 24px
+      height: 38px
+    
+    .scrollText
+      font-size: 10px
+
+// Decorative Shapes
+.heroShapes
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 1
+  pointer-events: none
+
+.shape
+  position: absolute
+  border-radius: 50%
+  filter: blur(60px)
+  opacity: 0.4
+  mix-blend-mode: screen
+
+.shape1
+  top: 15%
+  right: 10%
+  width: 300px
+  height: 300px
+  background: rgba($primary-color, 0.3)
+  animation: float 15s infinite ease-in-out
+  
+  +m
+    width: 150px
+    height: 150px
+
+.shape2
+  bottom: 20%
+  left: 15%
+  width: 250px
+  height: 250px
+  background: rgba($secondary-color, 0.3)
+  animation: float 18s infinite ease-in-out reverse
+  
+  +m
+    width: 120px
+    height: 120px
+
+.shape3
+  top: 40%
+  left: 25%
+  width: 200px
+  height: 200px
+  background: linear-gradient(45deg, rgba($primary-color, 0.3), rgba($secondary-color, 0.3))
+  animation: float 20s infinite ease-in-out 5s
+  
+  +m
+    width: 100px
+    height: 100px
+
+// Floating Button
+.floatingButton
+  position: fixed
+  bottom: 30px
+  right: 30px
+  padding: 16px 28px
+  background: $primary-color
+  color: $secondary-color
+  border: none
+  border-radius: 50px
+  font-weight: 600
+  font-size: 16px
+  cursor: pointer
+  z-index: 100
+  @include neumorphic
+  opacity: 0
+  transform: translateY(20px)
+  overflow: hidden
+  
+  &.visible
+    opacity: 1
+    transform: translateY(0)
+    animation: bounce 1s
+  
+  &:hover .rippleEffect
+    animation: ripple 1.5s infinite
+  
+  +m
+    padding: 12px 20px
+    font-size: 14px
+    bottom: 20px
+    right: 20px
+
+.rippleEffect
+  position: absolute
+  top: 50%
+  left: 50%
+  width: 100%
+  height: 100%
+  background: rgba(255, 255, 255, 0.3)
+  border-radius: 50%
+  transform: translate(-50%, -50%) scale(0)
+  pointer-events: none
+
+// Animations
+@keyframes fadeInUp
+  from
+    opacity: 0
+    transform: translateY(30px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes ripple
+  0%
+    transform: translate(-50%, -50%) scale(0)
+    opacity: 0.5
+  100%
+    transform: translate(-50%, -50%) scale(2)
+    opacity: 0
+
+@keyframes float
+  0%, 100%
+    transform: translateY(0)
+  50%
+    transform: translateY(-20px)
+
+@keyframes scrollWheel
+  0%
+    opacity: 1
+    transform: translateX(-50%) translateY(0)
+  100%
+    opacity: 0
+    transform: translateX(-50%) translateY(15px)
+
+@keyframes bounce
+  0%, 20%, 50%, 80%, 100%
+    transform: translateY(0)
+  40%
+    transform: translateY(-10px)
+  60%
+    transform: translateY(-5px)

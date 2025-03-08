@@ -14,12 +14,14 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "browserslist": "^4.23.0",
     "classnames": "^2.2.6",
+    "framer-motion": "^12.4.10",
     "moment": "^2.29.1",
     "react": "^18.3.1",
     "react-datepicker": "^4.2.1",
     "react-dom": "^18.3.1",
     "react-google-recaptcha": "2.1.0",
     "react-icons": "^5.2.1",
+    "react-intersection-observer": "^9.16.0",
     "react-outside-click-handler": "^1.3.0",
     "react-range": "^1.8.11",
     "react-responsive": "^9.0.0-beta.4",
@@ -73,5 +75,5 @@
   "bugs": {
     "url": "https://github.com/exhert/exhert-client/issues"
   },
-  "homepage":"https://exhert.com"
+  "homepage": "https://exhert.com"
 }

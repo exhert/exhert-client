@@ -1,46 +1,127 @@
 @import ../../../styles/helpers
 
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
+
+.section
+  position: relative
+  padding: 80px 0
+  background: linear-gradient(to bottom, lighten($dark-bg, 3%), $dark-bg)
+  overflow: hidden
+  
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+    opacity: 0.03
+    z-index: 1
+  
+  +m
+    padding: 60px 0
+
+.container
+  position: relative
+  z-index: 2
+
 .title
-    margin-bottom: 48px
-    text-align: center
-    +m
-        margin-bottom: 40px
+  margin-bottom: 48px
+  text-align: center
+  color: $light-text
+  
+  +m
+    margin-bottom: 40px
 
 .nav
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    margin: -2px -6px 40px
-    +m
-        display: none
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  margin: -2px -6px 40px
+  
+  +m
+    display: none
 
 .btn
-    margin: 12px 6px 0
-    padding: 6px 12px
-    border-radius: 14px
-    background: none
-    +button-2
-    color: $n4
-    transition: all .2s
-    -webkit-tap-highlight-color: rgba(0,0,0,0)
-    &:hover
-        color: $n3
-        +dark
-            color: $n8
-    &.active
-        background: $d1
-        color: $n8
-        +dark
-            background: $d1
-            color: $n8
+  margin: 12px 6px 0
+  padding: 8px 16px
+  border-radius: 8px
+  background: none
+  border: 1px solid rgba($light-text, 0.1)
+  font-size: 16px
+  font-weight: 500
+  color: rgba($light-text, 0.7)
+  transition: all .2s
+  cursor: pointer
+  
+  &:hover
+    color: $light-text
+    border-color: rgba($light-text, 0.3)
+  
+  &.active
+    background: $primary-color
+    color: $dark-bg
+    border-color: $primary-color
 
 .dropdown
-    display: none
-    text-align: left
-    +m
-        display: block
-        margin-bottom: 24px
+  display: none
+  text-align: left
+  margin-bottom: 32px
+  
+  +m
+    display: block
 
 .list
-    max-width: 546px
-    margin: 0 auto
+  max-width: 700px
+  margin: 0 auto
+  background: rgba(lighten($dark-bg, 5%), 0.5)
+  border-radius: 16px
+  padding: 24px
+  backdrop-filter: blur(10px)
+  border: 1px solid rgba($light-text, 0.05)
+  
+  +m
+    padding: 16px
+    max-width: 100%
+
+.backgroundElements
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 1
+  pointer-events: none
+
+.element1, .element2
+  position: absolute
+  border-radius: 50%
+  filter: blur(60px)
+  opacity: 0.07
+
+.element1
+  bottom: -100px
+  left: -100px
+  width: 400px
+  height: 400px
+  background: radial-gradient(circle, rgba($primary-color, 0.8), transparent 70%)
+  
+  +m
+    width: 300px
+    height: 300px
+
+.element2
+  top: -100px
+  right: -100px
+  width: 500px
+  height: 500px
+  background: radial-gradient(circle, rgba($secondary-color, 0.6), transparent 70%)
+  
+  +m
+    width: 350px
+    height: 350px

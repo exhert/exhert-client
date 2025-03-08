@@ -12,7 +12,7 @@
     margin-right: 5px
     height: 48px
     padding: 0 48px 0 14px
-    border-radius: 50px
+    border-radius: 5px
     background: none
     border: 2px solid $n4
     +poppins
@@ -23,7 +23,7 @@
         border-color: $n4
         color: $n8
     &:focus
-        border-color: $n3
+        border-color: white
     +placeholder
         color: $n4
     +m
@@ -36,16 +36,17 @@
  
 
 .btn
-    width: 30%
+    width: 50%
     height: 48px
     background: $d1
     color: $white
+    border-radius: 5px
     transition: background .2s
     svg
         fill: $n8
     &:hover
-        background: darken($p1, 10)
-        color: $n9
+        background: darken(#1b39bb, 10)
+        color: white
     +d    
     +m
        width: 100%    
@@ -54,17 +55,17 @@
     .input
         height: 72px
         padding: 0 72px 0 22px
-        border-radius: 5%
+        border-radius: 5px
         border: 2px solid $n7
         font-size: 16px
         +placeholder
-            color: $n5
+            color: #0a0a0a
         &:focus
-            border-color: $n5
+            border-color: white
         +dark
             border-color: $n3
             &:focus
-                border-color: $n5
+                border-color: white 
     .btn
         top: 16px
         right: 16px
@@ -76,3 +77,11 @@
             height: 20px
         +m 
             width: 100%   
+
+.formContainer
+    display: flex
+    width: 100%
+    +m
+        flex-direction: column
+    +m
+       width: 100%   

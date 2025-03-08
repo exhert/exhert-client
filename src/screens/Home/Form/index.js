@@ -18,7 +18,10 @@ const createEarlyAccessMutation = `
 const Form = ({
   className,
   big,
-  placeholder,
+  placeholder = "Enter your email",
+  buttonText = "Join Waitlist",
+  loadingText = "Joining...",
+  toastSuccessMessage = "Successfully joined the waitlist!",
 }) => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,7 +61,7 @@ const Form = ({
         }
       } else {
         // Success
-        toast.success("Successfully joined the waitlist!");
+        toast.success(toastSuccessMessage);
         setEmail(""); // Clear the form
       }
     } catch (error) {
@@ -76,23 +79,25 @@ const Form = ({
       })}
       onSubmit={handleSubmit}
     >
-      <input
-        className={styles.input}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-        type="email"
-        name="email"
-        required
-        disabled={isSubmitting}
-      />
-      <button 
-        className={cn("button", styles.btn)}
-        type="submit"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? "Joining..." : "Join Waitlist"}
-      </button>
+      <div className={styles.formContainer}>
+        <input
+          className={styles.input}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={placeholder}
+          type="email"
+          name="email"
+          required
+          disabled={isSubmitting}
+        />
+        <button 
+          className={cn("button", styles.btn)}
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? loadingText : buttonText}
+        </button>
+      </div>
     </form>
   );
 };

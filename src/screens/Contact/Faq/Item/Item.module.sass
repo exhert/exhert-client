@@ -1,37 +1,40 @@
 @import ../../../../styles/helpers
 
+// Brand Colors
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-text: #ffffff
+
 .item
     &:hover
         .head
-            color: $p1
+            color: $primary-color
         .number
-            color: $p1
+            color: $primary-color
     &:not(:last-child)
         .head
-            border-bottom: 1px solid $n6
-            +dark
-                border-color: $n3
+            border-bottom: 1px solid rgba($light-text, 0.1)
 
 .head
     position: relative
     display: flex
     align-items: center
     padding: 24px 0
-    +body-bold-2
+    font-size: 18px
+    font-weight: 600
+    color: $light-text
     cursor: pointer
     transition: color .2s
     -webkit-tap-highlight-color: rgba(0,0,0,0)
     &.active
         .number
-            color: $p1
-        .arrow
-            svg
-                transform: rotate(180deg)
+            color: $primary-color
 
 .number
     flex-shrink: 0
     width: 40px
-    color: $n4
+    color: rgba($light-text, 0.5)
     transition: color .2s
 
 .title
@@ -45,13 +48,12 @@
     width: 24px
     margin-left: 16px
     svg
-        fill: $n4
-        transition: transform .2s
+        fill: rgba($light-text, 0.5)
 
 .body
-    display: none
-    padding: 24px 0 0 40px
-    color: $n4
-    &.visible
-        display: block
+    padding: 0 0 24px 40px
+    color: rgba($light-text, 0.7)
+    font-size: 16px
+    line-height: 1.6
+    overflow: hidden
 

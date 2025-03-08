@@ -49,8 +49,8 @@ const Header = ({ headerWide }) => {
           />
           <Image
             className={styles.picMobile}
-            src="/images/logo_mobile.png"
-            srcDark="/images/logo_mobile.png"
+            src="/images/logo_dark.png"
+            srcDark="/images/logo_dark.png"
           />
         </Link>
         <div className={styles.wrapper}>

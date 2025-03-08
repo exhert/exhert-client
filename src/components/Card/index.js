@@ -3,6 +3,7 @@ import cn from "classnames";
 import styles from "./Card.module.sass";
 import Play from "../Play";
 import { Link } from "react-router-dom";
+import LazyImage from "../LazyImage";
 
 const Card = ({ className, item }) => {
   return (
@@ -27,7 +28,11 @@ const Card = ({ className, item }) => {
             {item.categoryText}
           </div>
         )}
-        <img srcSet={`${item.image2x} 2x`} src={item.image} alt="Card" />
+        <LazyImage 
+          src={item.image} 
+          srcSet={item.image2x ? `${item.image2x} 2x` : undefined} 
+          alt="Card" 
+        />
         {item.play && <Play className="play" small />}
       </div>
       <div className={styles.body}>

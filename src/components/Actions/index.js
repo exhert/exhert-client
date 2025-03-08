@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import cn from "classnames";
 import styles from "./Actions.module.sass";
 import { Link } from "react-router-dom";
 import Icon from "../Icon";
 import Modal from "../Modal";
-import Transfer from "../Transfer";
+
+// Lazy load the Transfer component
+const Transfer = lazy(() => import("../Transfer"));
 
 const items = [
   {
@@ -71,7 +73,9 @@ const Actions = ({ className }) => {
         visible={visibleTransfer}
         onClose={() => setVisibleTransfer(false)}
       >
-        <Transfer />
+        <Suspense fallback={<div>Loading transfer...</div>}>
+          <Transfer />
+        </Suspense>
       </Modal>
     </>
   );

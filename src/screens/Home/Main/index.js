@@ -98,7 +98,7 @@ const Main = ({ scrollToRef }) => {
         >
           <div className={styles.gradientOverlay}></div>
           <div className={styles.noiseTexture}></div>
-          <img src="/images/content/cards-dark@2x.png" alt="Cards" />
+          <img src="/images/content/cards-dark@2x.png" srcSet="/images/content/cards-dark.png" alt="Cards" />
         </div>
         
         <div className={styles.heroContent}>

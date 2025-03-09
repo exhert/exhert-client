@@ -157,7 +157,7 @@ const Main = ({ scrollToRef }) => {
           <div className={styles.scrollText}>{t('scrollToExplore')}</div>
         </div>
         
-        <button 
+        {/* <button 
           className={cn(styles.floatingButton, {
             [styles.visible]: isVisible
           })}
@@ -165,7 +165,7 @@ const Main = ({ scrollToRef }) => {
         >
           <span>{t('joinWaitlist')}</span>
           <div className={styles.rippleEffect}></div>
-        </button>
+        </button> */}
       </div>
     </div>
   );

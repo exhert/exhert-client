@@ -3,45 +3,39 @@ import styles from './WhyJoin.module.sass';
 import { motion } from 'framer-motion';
 
 const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 60,
-    hours: 12,
-    minutes: 30,
-    seconds: 0
-  });
+  const calculateTimeLeft = () => {
+    const targetDate = new Date('2025-04-30T00:00:00');
+    const now = new Date();
+    const difference = targetDate - now;
+
+    if (difference <= 0) {
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60)
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(prevTime => {
-        let { days, hours, minutes, seconds } = prevTime;
-        
-        if (seconds > 0) {
-          seconds -= 1;
-        } else {
-          seconds = 59;
-          if (minutes > 0) {
-            minutes -= 1;
-          } else {
-            minutes = 59;
-            if (hours > 0) {
-              hours -= 1;
-            } else {
-              hours = 23;
-              if (days > 0) {
-                days -= 1;
-              } else {
-                // Reset timer when it reaches zero
-                days = 60;
-                hours = 12;
-                minutes = 30;
-                seconds = 0;
-              }
-            }
-          }
-        }
-        
-        return { days, hours, minutes, seconds };
-      });
+      const newTimeLeft = calculateTimeLeft();
+      setTimeLeft(newTimeLeft);
+
+      // Clear interval if we reach the target date
+      if (Object.values(newTimeLeft).every(value => value === 0)) {
+        clearInterval(timer);
+      }
     }, 1000);
     
     return () => clearInterval(timer);
@@ -86,10 +80,10 @@ const CountdownTimer = () => {
             r="54" 
             className={styles.countdownCircle}
             style={{
-              strokeDashoffset: 339.292 * (1 - timeLeft.days / 7)
+              strokeDashoffset: 339.292 * (1 - (timeLeft.days % 365) / 365)
             }}
             initial={{ strokeDashoffset: 339.292 }}
-            animate={{ strokeDashoffset: 339.292 * (1 - timeLeft.days / 7) }}
+            animate={{ strokeDashoffset: 339.292 * (1 - (timeLeft.days % 365) / 365) }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           />
           <motion.text 
@@ -99,6 +93,7 @@ const CountdownTimer = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
+            transform="rotate(90, 60, 65)"
           >
             {timeLeft.days}
           </motion.text>
@@ -138,6 +133,7 @@ const CountdownTimer = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
+            transform="rotate(90, 60, 65)"
           >
             {timeLeft.hours}
           </motion.text>
@@ -177,6 +173,7 @@ const CountdownTimer = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
+            transform="rotate(90, 60, 65)"
           >
             {timeLeft.minutes}
           </motion.text>
@@ -216,6 +213,7 @@ const CountdownTimer = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
+            transform="rotate(90, 60, 65)"
           >
             {timeLeft.seconds}
           </motion.text>

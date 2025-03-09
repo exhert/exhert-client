@@ -251,15 +251,15 @@ $light-text: #ffffff
     stroke-width: 6
 
 .countdownText
-  transform: rotate(90deg)
-  font-size: 24px
-  font-weight: 700
   fill: $light-text
+  font-size: 24px
+  font-weight: 600
   text-anchor: middle
   dominant-baseline: middle
+  transform-origin: center
   
   +m
-    font-size: 18px
+    font-size: 20px
 
 .countdownLabel
   margin-top: 8px
@@ -278,7 +278,7 @@ $light-text: #ffffff
   font-size: 18px
   font-weight: 700
   border: none
-  border-radius: 50px
+  border-radius: 5px
   cursor: pointer
   overflow: hidden
   transition: transform 0.2s ease, box-shadow 0.2s ease

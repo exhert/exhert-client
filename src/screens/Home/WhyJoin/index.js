@@ -71,9 +71,20 @@ const WhyJoin = () => {
   };
 
   const scrollToFinalCTA = () => {
-    const finalCTASection = document.getElementById('finalCTA');
-    if (finalCTASection) {
-      finalCTASection.scrollIntoView({ behavior: 'smooth' });
+    const heroSection = document.getElementById('waitlist-hero');
+    if (heroSection) {
+      heroSection.scrollIntoView({ behavior: 'smooth' });
+      let scrollTimeout;
+      const checkScrollEnd = () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          window.removeEventListener('scroll', checkScrollEnd);
+          if (window.triggerFormGlow) {
+            window.triggerFormGlow();
+          }
+        }, 150);
+      };
+      window.addEventListener('scroll', checkScrollEnd);
     }
   };
 

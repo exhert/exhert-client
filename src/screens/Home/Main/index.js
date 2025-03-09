@@ -35,6 +35,7 @@ const socials = [
 const Main = ({ scrollToRef }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isGlowing, setIsGlowing] = useState(false);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -67,6 +68,15 @@ const Main = ({ scrollToRef }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isGlowing) {
+      const timer = setTimeout(() => {
+        setIsGlowing(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isGlowing]);
+
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     const floatingButton = document.querySelector(`.${styles.floatingButton}`);
@@ -80,6 +90,17 @@ const Main = ({ scrollToRef }) => {
     }
   };
 
+  const handleScrollComplete = () => {
+    setIsGlowing(true);
+  };
+
+  useEffect(() => {
+    window.triggerFormGlow = handleScrollComplete;
+    return () => {
+      delete window.triggerFormGlow;
+    };
+  }, []);
+
   const scrollToForm = () => {
     if (scrollToRef && scrollToRef.current) {
       scrollToRef.current.scrollIntoView({ behavior: "smooth" });
@@ -88,7 +109,7 @@ const Main = ({ scrollToRef }) => {
 
   return (
     <div className={cn("section", styles.main)}>
-      <div className={styles.hero} ref={heroRef}>
+      <div className={styles.hero} ref={heroRef} id="waitlist-hero">
         <div 
           className={styles.heroBackground}
           style={{
@@ -120,7 +141,7 @@ const Main = ({ scrollToRef }) => {
           
           <p className={styles.heroSubTitle}>Don't think about the risks, just trade.</p>
           
-          <Form className={styles.heroForm} />
+          <Form className={cn(styles.heroForm, { [styles.glowEffect]: isGlowing })} />
           
         
         <div className={styles.heroShapes}>

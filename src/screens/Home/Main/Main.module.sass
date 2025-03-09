@@ -282,6 +282,18 @@ $gray-text: rgba(255, 255, 255, 0.7)
       pointer-events: none
       z-index: 1
 
+.glowEffect
+  animation: glow 2s ease-in-out
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6)
+
+@keyframes glow
+  0%
+    box-shadow: 0 0 0px rgba(255, 215, 0, 0)
+  50%
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.8)
+  100%
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6)
+
 // Scroll Indicator - repositioned to be just above the bottom edge
 .scrollIndicator
   position: absolute

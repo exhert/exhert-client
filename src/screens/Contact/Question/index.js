@@ -6,11 +6,13 @@ import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 import TextInput from "../../../components/TextInput";
 import TextArea from "../../../components/TextArea";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "../../../utils/useTranslation";
+import { useLanguage } from "../../../utils/LanguageContext";
 
 const Question = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,11 +22,19 @@ const Question = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef();
 
+  // Reset form when language changes
+  useEffect(() => {
+    setFormData({ name: '', email: '', message: '' });
+    if (recaptchaRef.current) {
+      recaptchaRef.current.reset();
+    }
+    setIsVerified(false);
+  }, [language]);
+
   // Initialize EmailJS with your public key 
   useEffect(() => {
     emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
   }, []);
-
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value});
@@ -37,12 +47,10 @@ const Question = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    /*
     if (!isVerified) {
       toast.error(t('completeCaptcha'));
       return;
     }
-    */
 
     setIsSubmitting(true);
 
@@ -53,8 +61,6 @@ const Question = () => {
         message: formData.message,
       };
 
-      // Commented out EmailJS implementation
-      /*
       if (process.env.REACT_APP_EMAILJS_SERVICE_ID && 
           process.env.REACT_APP_EMAILJS_TEMPLATE_ID) {
         
@@ -65,26 +71,21 @@ const Question = () => {
         );
 
         if (response.status === 200) {
-          toast.success('Message sent successfully!');
+          toast.success(t('messageSent'));
           setFormData({ name: '', email: '', message: '' });
           recaptchaRef.current.reset();
           setIsVerified(false);
         }
       } else {
-      */
-      
-      // For development without EmailJS configured
-      console.log('Form would be submitted with:', templateParams);
-      toast.success(t('messageSentDev'));
-      setFormData({ name: '', email: '', message: '' });
-      /*
-      if (recaptchaRef.current) {
-        recaptchaRef.current.reset();
+        // Fallback for development
+        console.log('Form would be submitted with:', templateParams);
+        toast.success(t('messageSentDev'));
+        setFormData({ name: '', email: '', message: '' });
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+        }
+        setIsVerified(false);
       }
-      setIsVerified(false);
-      */
-      
-      // }
     } catch (error) {
       console.error('Failed to send message:', error);
       toast.error(t('messageFailed'));
@@ -119,79 +120,79 @@ const Question = () => {
   return (
     <div className={styles.section}>
       <div className={cn("container", styles.container)}>
-        <motion.form 
-          className={styles.form} 
-          onSubmit={handleSubmit}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.h2 className={cn("h2", styles.title)} variants={itemVariants}>
-            {t('getInTouch')}
-          </motion.h2>
-          <div className={styles.fieldset}>
-            <motion.div className={styles.fieldWrapper} variants={itemVariants}>
-              <TextInput
-                className={styles.field}
-                label={t('name')}
-                name="name"
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+        <AnimatePresence mode="wait">
+          <motion.form 
+            key={language}
+            className={styles.form} 
+            onSubmit={handleSubmit}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.h2 className={cn("h2", styles.title)} variants={itemVariants}>
+              {t('getInTouch')}
+            </motion.h2>
+            <div className={styles.fieldset}>
+              <motion.div className={styles.fieldWrapper} variants={itemVariants}>
+                <TextInput
+                  className={styles.field}
+                  label={t('name')}
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </motion.div>
+              <motion.div className={styles.fieldWrapper} variants={itemVariants}>
+                <TextInput
+                  className={styles.field}
+                  label={t('email')}
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </motion.div>
+              <motion.div className={styles.fieldWrapper} variants={itemVariants}>
+                <TextArea
+                  className={styles.field}
+                  label={t('message')}
+                  name="message"
+                  placeholder={t('saySomething')}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+              </motion.div>
+              
+              <motion.div className={styles.field} variants={itemVariants}>
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                  onChange={handleRecaptcha}
+                  hl={language}
+                />
+              </motion.div>
+            </div>
+            <motion.div className={styles.btns} variants={itemVariants}>
+              <button 
+                className={cn(styles.button, {
+                  [styles.buttonLoading]: isSubmitting
+                })}
+                disabled={!isVerified || isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className={styles.loadingSpinner}></span>
+                ) : (
+                  t('sendMessage')
+                )}
+              </button>
             </motion.div>
-            <motion.div className={styles.fieldWrapper} variants={itemVariants}>
-              <TextInput
-                className={styles.field}
-                label={t('email')}
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </motion.div>
-            <motion.div className={styles.fieldWrapper} variants={itemVariants}>
-              <TextArea
-                className={styles.field}
-                label={t('message')}
-                name="message"
-                placeholder={t('saySomething')}
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-            </motion.div>
-            {/* Commenting out ReCAPTCHA for local development */}
-            
-            <motion.div className={styles.field} variants={itemVariants}>
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                onChange={handleRecaptcha}
-              />
-            </motion.div>
-           
-          </div>
-          <motion.div className={styles.btns} variants={itemVariants}>
-            <button 
-              className={cn(styles.button, {
-                [styles.buttonLoading]: isSubmitting
-              })}
-              // disabled={!isVerified || isSubmitting}
-              // Removed verification requirement for local testing
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <span className={styles.loadingSpinner}></span>
-              ) : (
-                t('sendMessage')
-              )}
-            </button>
-          </motion.div>
-        </motion.form>
+          </motion.form>
+        </AnimatePresence>
       </div>
       <div className={styles.backgroundElements}>
         <div className={styles.element1}></div>

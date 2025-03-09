@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import styles from "./Faq.module.sass";
 import Item from "./Item";
 import Dropdown from "../../../components/Dropdown";
 import { motion } from "framer-motion";
 import { useTranslation } from "../../../utils/useTranslation";
+import { useLanguage } from "../../../utils/LanguageContext";
 
 const Faq = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
 
   const items = [
     {
@@ -95,6 +97,12 @@ const Faq = () => {
   const options = items.map(x => x.title);
   const [category, setCategory] = useState(options[0]);
 
+  // Update category when language changes
+  useEffect(() => {
+    const newOptions = items.map(x => x.title);
+    setCategory(newOptions[0]);
+  }, [language, t]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -117,6 +125,9 @@ const Faq = () => {
       }
     }
   };
+
+  // Find the current category items, with fallback to first category
+  const currentCategory = items.find((x) => x.title === category) || items[0];
 
   return (
     <div className={styles.section}>
@@ -163,21 +174,19 @@ const Faq = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {items
-            .find((x) => x.title === category)
-            .items.map((x, index) => (
-              <motion.div 
-                variants={itemVariants} 
-                key={index}
-                custom={index}
-              >
-                <Item
-                  className={styles.item}
-                  item={x}
-                  index={index}
-                />
-              </motion.div>
-            ))}
+          {currentCategory.items.map((x, index) => (
+            <motion.div 
+              variants={itemVariants} 
+              key={index}
+              custom={index}
+            >
+              <Item
+                className={styles.item}
+                item={x}
+                index={index}
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </div>
       <div className={styles.backgroundElements}>

@@ -1,5 +1,8 @@
 {
-    "name": "Exhert - P2P Crypto Exchange",
+    "name": {
+        "en": "Exhert - P2P Crypto Exchange",
+        "fr": "Exhert - Échange Crypto P2P"
+    },
     "short_name": "Exhert",
     "description": {
         "en": "Secure P2P crypto trading platform",
@@ -22,6 +25,7 @@
     "background_color": "#ffffff",
     "display": "standalone",
     "orientation": "portrait",
-    "lang": "en",
+    "default_locale": "en",
+    "locales": ["en", "fr"],
     "dir": "ltr"
 }

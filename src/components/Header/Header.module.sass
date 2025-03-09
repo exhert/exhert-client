@@ -40,34 +40,33 @@ $light-text: #ffffff
     &.wide
         .container
             max-width: 100%
-            padding: 0 24px
+            padding: 0 12px
             +m
-                padding: 0 16px
+                padding: 0 8px
 
 .container
     display: flex
     justify-content: space-between
     align-items: center
+    padding: 0 12px
     +d
-        padding: 0 24px
+        padding: 0 12px
     +t
-        padding: 0 16px
+        padding: 0 8px
     +m
-        padding: 0 16px
+        padding: 0 8px
 
 .logo
-    margin-right: 16px
+    margin-right: auto
     transition: transform 0.3s ease
+    padding-left: 0
     
     // &:hover
     //     transform: scale(1.05)
     
-    +t
-        margin-right: 12px
     +m
         position: relative
         z-index: 15
-        margin-right: auto 
     
     img
         width: 120px
@@ -91,11 +90,12 @@ $light-text: #ffffff
     display: flex
     justify-content: flex-end
     align-items: center
+    padding-right: 0
     +m
         flex-grow: 0
 
 .wrap
-    margin-right: 16px
+    margin-right: 12px
     +m
         position: fixed
         top: 0
@@ -166,13 +166,13 @@ $light-text: #ffffff
     align-items: center
 
 .theme
-    margin-right: 12px
+    margin-right: 8px
     +d
-        margin-right: 8px
+        margin-right: 6px
     +t
-        margin-right: 8px
+        margin-right: 6px
     +m
-        margin-right: 8px
+        margin-right: 6px
 
 .burger
     display: none
@@ -180,7 +180,8 @@ $light-text: #ffffff
         display: block
         position: relative
         z-index: 101
-        margin-left: 8px
+        margin-left: 6px
+        padding-right: 0
         width: 32px
         height: 32px
         background: none

@@ -44,7 +44,7 @@ const Header = ({ headerWide }) => {
         >
           <Image
             className={styles.picDesktop}
-            src="/images/logo_light.png"
+            src="/images/logo_dark.png"
             srcDark="/images/logo_dark.png"
           />
           <Image
@@ -78,9 +78,9 @@ const Header = ({ headerWide }) => {
               )}
             </nav>
           </div>
-          <div className={styles.control}>
+          {/* <div className={styles.control}>
             <Theme className={styles.theme} icon />
-          </div>
+          </div> */}
           <button
             className={cn(styles.burger, { [styles.active]: visibleNav })}
             onClick={() => setVisibleNav(!visibleNav)}

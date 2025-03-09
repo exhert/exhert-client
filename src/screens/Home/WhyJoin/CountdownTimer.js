@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './WhyJoin.module.sass';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const CountdownTimer = () => {
   const calculateTimeLeft = () => {
@@ -32,7 +32,6 @@ const CountdownTimer = () => {
       const newTimeLeft = calculateTimeLeft();
       setTimeLeft(newTimeLeft);
 
-      // Clear interval if we reach the target date
       if (Object.values(newTimeLeft).every(value => value === 0)) {
         clearInterval(timer);
       }
@@ -41,193 +40,100 @@ const CountdownTimer = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const countdownVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
+  const padNumber = (num) => String(num).padStart(2, '0');
+
+  const glitchVariants = {
+    initial: { opacity: 1, y: 0, scale: 1 },
+    glitch1: { 
+      opacity: [1, 0.8, 1],
+      x: [0, -2, 2, 0],
+      scale: [1, 1.02, 0.98, 1],
       transition: {
-        duration: 0.5,
-        ease: "easeOut"
+        duration: 0.2,
+        times: [0, 0.2, 0.8, 1]
+      }
+    },
+    glitch2: {
+      opacity: [1, 0.9, 1],
+      x: [0, 2, -2, 0],
+      scale: [1, 0.98, 1.02, 1],
+      transition: {
+        duration: 0.15,
+        times: [0, 0.3, 0.7, 1]
       }
     }
   };
 
   return (
-    <motion.div 
-      className={styles.countdownContainer}
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.1
-          }
-        }
-      }}
-    >
+    <div className={styles.digitalClockContainer}>
       <motion.div 
-        className={styles.countdownItem}
-        variants={countdownVariants}
+        className={styles.digitalDisplay}
+        initial="initial"
+        animate={["glitch1", "glitch2"]}
+        variants={glitchVariants}
       >
-        <svg viewBox="0 0 120 120" className={styles.countdownSvg}>
-          <circle cx="60" cy="60" r="54" className={styles.countdownCircleBg} />
-          <motion.circle 
-            cx="60" 
-            cy="60" 
-            r="54" 
-            className={styles.countdownCircle}
-            style={{
-              strokeDashoffset: 339.292 * (1 - (timeLeft.days % 365) / 365)
-            }}
-            initial={{ strokeDashoffset: 339.292 }}
-            animate={{ strokeDashoffset: 339.292 * (1 - (timeLeft.days % 365) / 365) }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-          <motion.text 
-            x="60" 
-            y="65" 
-            className={styles.countdownText}
-            initial={{ opacity: 0, y: 10 }}
+        <div className={styles.timeUnit}>
+          <motion.span 
+            className={styles.number}
+            key={`days-${timeLeft.days}`}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            transform="rotate(90, 60, 65)"
+            exit={{ opacity: 0, y: -20 }}
+            data-text={padNumber(timeLeft.days)}
           >
-            {timeLeft.days}
-          </motion.text>
-        </svg>
-        <motion.span 
-          className={styles.countdownLabel}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-        >
-          Days
-        </motion.span>
-      </motion.div>
-      
-      <motion.div 
-        className={styles.countdownItem}
-        variants={countdownVariants}
-      >
-        <svg viewBox="0 0 120 120" className={styles.countdownSvg}>
-          <circle cx="60" cy="60" r="54" className={styles.countdownCircleBg} />
-          <motion.circle 
-            cx="60" 
-            cy="60" 
-            r="54" 
-            className={styles.countdownCircle}
-            style={{
-              strokeDashoffset: 339.292 * (1 - timeLeft.hours / 24)
-            }}
-            initial={{ strokeDashoffset: 339.292 }}
-            animate={{ strokeDashoffset: 339.292 * (1 - timeLeft.hours / 24) }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-          <motion.text 
-            x="60" 
-            y="65" 
-            className={styles.countdownText}
-            initial={{ opacity: 0, y: 10 }}
+            {padNumber(timeLeft.days)}
+          </motion.span>
+          <span className={styles.label}>DAYS</span>
+        </div>
+        <div className={styles.separator}>:</div>
+        <div className={styles.timeUnit}>
+          <motion.span 
+            className={styles.number}
+            key={`hours-${timeLeft.hours}`}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            transform="rotate(90, 60, 65)"
+            exit={{ opacity: 0, y: -20 }}
+            data-text={padNumber(timeLeft.hours)}
           >
-            {timeLeft.hours}
-          </motion.text>
-        </svg>
-        <motion.span 
-          className={styles.countdownLabel}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-        >
-          Hours
-        </motion.span>
-      </motion.div>
-      
-      <motion.div 
-        className={styles.countdownItem}
-        variants={countdownVariants}
-      >
-        <svg viewBox="0 0 120 120" className={styles.countdownSvg}>
-          <circle cx="60" cy="60" r="54" className={styles.countdownCircleBg} />
-          <motion.circle 
-            cx="60" 
-            cy="60" 
-            r="54" 
-            className={styles.countdownCircle}
-            style={{
-              strokeDashoffset: 339.292 * (1 - timeLeft.minutes / 60)
-            }}
-            initial={{ strokeDashoffset: 339.292 }}
-            animate={{ strokeDashoffset: 339.292 * (1 - timeLeft.minutes / 60) }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-          <motion.text 
-            x="60" 
-            y="65" 
-            className={styles.countdownText}
-            initial={{ opacity: 0, y: 10 }}
+            {padNumber(timeLeft.hours)}
+          </motion.span>
+          <span className={styles.label}>HRS</span>
+        </div>
+        <div className={styles.separator}>:</div>
+        <div className={styles.timeUnit}>
+          <motion.span 
+            className={styles.number}
+            key={`minutes-${timeLeft.minutes}`}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            transform="rotate(90, 60, 65)"
+            exit={{ opacity: 0, y: -20 }}
+            data-text={padNumber(timeLeft.minutes)}
           >
-            {timeLeft.minutes}
-          </motion.text>
-        </svg>
-        <motion.span 
-          className={styles.countdownLabel}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-        >
-          Minutes
-        </motion.span>
-      </motion.div>
-      
-      <motion.div 
-        className={styles.countdownItem}
-        variants={countdownVariants}
-      >
-        <svg viewBox="0 0 120 120" className={styles.countdownSvg}>
-          <circle cx="60" cy="60" r="54" className={styles.countdownCircleBg} />
-          <motion.circle 
-            cx="60" 
-            cy="60" 
-            r="54" 
-            className={styles.countdownCircle}
-            style={{
-              strokeDashoffset: 339.292 * (1 - timeLeft.seconds / 60)
-            }}
-            initial={{ strokeDashoffset: 339.292 }}
-            animate={{ strokeDashoffset: 339.292 * (1 - timeLeft.seconds / 60) }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-          <motion.text 
-            x="60" 
-            y="65" 
-            className={styles.countdownText}
-            initial={{ opacity: 0, y: 10 }}
+            {padNumber(timeLeft.minutes)}
+          </motion.span>
+          <span className={styles.label}>MIN</span>
+        </div>
+        <div className={styles.separator}>:</div>
+        <div className={styles.timeUnit}>
+          <motion.span 
+            className={styles.number}
+            key={`seconds-${timeLeft.seconds}`}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            transform="rotate(90, 60, 65)"
+            exit={{ opacity: 0, y: -20 }}
+            data-text={padNumber(timeLeft.seconds)}
           >
-            {timeLeft.seconds}
-          </motion.text>
-        </svg>
-        <motion.span 
-          className={styles.countdownLabel}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-        >
-          Seconds
-        </motion.span>
+            {padNumber(timeLeft.seconds)}
+          </motion.span>
+          <span className={styles.label}>SEC</span>
+        </div>
       </motion.div>
-    </motion.div>
+      <div className={styles.glitchLayers}>
+        <div className={styles.glitchLayer}></div>
+        <div className={styles.glitchLayer}></div>
+        <div className={styles.glitchLayer}></div>
+      </div>
+    </div>
   );
 };
 

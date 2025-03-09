@@ -4,8 +4,10 @@ import styles from "./FinalCTA.module.sass";
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation } from "framer-motion";
 import Form from "../Form";
+import { useTranslation } from "../../../utils/useTranslation";
 
 const FinalCTA = () => {
+  const { t } = useTranslation();
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.2,
@@ -74,15 +76,14 @@ const FinalCTA = () => {
             className={cn("h2", styles.title)}
             variants={itemVariants}
           >
-            Get Early Access to the Future of Trading!
+            {t('finalCtaTitle')}
           </motion.h2>
           
           <motion.p 
             className={styles.description}
             variants={itemVariants}
           >
-            Be among the first to experience secure, high-speed P2P crypto trading.
-            Join our exclusive waitlist today and secure your spot.
+            {t('finalCtaDesc')}
           </motion.p>
           
           <motion.div 
@@ -91,7 +92,7 @@ const FinalCTA = () => {
           >
             <Form className={styles.waitlistForm} />
             
-            {/* <motion.div 
+            <motion.div 
               className={styles.formInfo}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -113,7 +114,7 @@ const FinalCTA = () => {
                     <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </motion.div>
-                <span>Limited spots available</span>
+                <span>{t('limitedSpotsInfo')}</span>
               </div>
               
               <div className={styles.infoItem}>
@@ -132,7 +133,7 @@ const FinalCTA = () => {
                     <path d="M16 9L10.5 14.5L8 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </motion.div>
-                <span>No extra information required</span>
+                <span>{t('noExtraInfo')}</span>
               </div>
             </motion.div>
           </motion.div>
@@ -174,8 +175,8 @@ const FinalCTA = () => {
               >
                 +2.5k
               </motion.div>
-            </div> */}
-            {/* <div className={styles.socialProofText}>
+            </div>
+            <div className={styles.socialProofText}>
               <motion.span
                 animate={{ y: [0, -5, 0] }}
                 transition={{ 
@@ -185,9 +186,9 @@ const FinalCTA = () => {
                   repeatDelay: 0
                 }}
               >
-                Joined the waitlist this week
+                {t('joinedThisWeek')}
               </motion.span>
-            </div> */}
+            </div>
           </motion.div>
         </motion.div>
       </div>

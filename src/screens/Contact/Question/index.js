@@ -7,9 +7,10 @@ import ReCAPTCHA from "react-google-recaptcha";
 import TextInput from "../../../components/TextInput";
 import TextArea from "../../../components/TextArea";
 import { motion } from "framer-motion";
-
+import { useTranslation } from "../../../utils/useTranslation";
 
 const Question = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,7 +39,7 @@ const Question = () => {
     
     /*
     if (!isVerified) {
-      toast.error('Please complete the captcha');
+      toast.error(t('completeCaptcha'));
       return;
     }
     */
@@ -74,7 +75,7 @@ const Question = () => {
       
       // For development without EmailJS configured
       console.log('Form would be submitted with:', templateParams);
-      toast.success('Message sent successfully! (Development mode)');
+      toast.success(t('messageSentDev'));
       setFormData({ name: '', email: '', message: '' });
       /*
       if (recaptchaRef.current) {
@@ -86,7 +87,7 @@ const Question = () => {
       // }
     } catch (error) {
       console.error('Failed to send message:', error);
-      toast.error('Failed to send message. Please try again.');
+      toast.error(t('messageFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -127,13 +128,13 @@ const Question = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h2 className={cn("h2", styles.title)} variants={itemVariants}>
-            Get in touch
+            {t('getInTouch')}
           </motion.h2>
           <div className={styles.fieldset}>
             <motion.div className={styles.fieldWrapper} variants={itemVariants}>
               <TextInput
                 className={styles.field}
-                label="Name"
+                label={t('name')}
                 name="name"
                 type="text"
                 value={formData.name}
@@ -144,7 +145,7 @@ const Question = () => {
             <motion.div className={styles.fieldWrapper} variants={itemVariants}>
               <TextInput
                 className={styles.field}
-                label="Email address"
+                label={t('email')}
                 name="email"
                 type="email"
                 value={formData.email}
@@ -155,9 +156,9 @@ const Question = () => {
             <motion.div className={styles.fieldWrapper} variants={itemVariants}>
               <TextArea
                 className={styles.field}
-                label="Message"
+                label={t('message')}
                 name="message"
-                placeholder="Say something"
+                placeholder={t('saySomething')}
                 value={formData.message}
                 onChange={handleChange}
                 required
@@ -186,7 +187,7 @@ const Question = () => {
               {isSubmitting ? (
                 <span className={styles.loadingSpinner}></span>
               ) : (
-                "Send message"
+                t('sendMessage')
               )}
             </button>
           </motion.div>

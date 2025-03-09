@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./styles/app.sass";
 import Page from "./components/Page";
+import { LanguageProvider } from "./utils/LanguageContext";
 
 // Lazy load all screens
 const Home = lazy(() => import("./screens/Home"));
@@ -57,41 +58,43 @@ const LoadingFallback = () => (
 
 function App() {
   return (
-    <Router>
-      <Suspense fallback={<LoadingFallback />}>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Page>
-                <Home />
-              </Page>
-            )}
-          />
-          <Route
-            exact
-            path="/contact"
-            render={() => (
-              <Page>
-                <Contact />
-              </Page>
-            )}
-          />
-          {/* Uncomment routes as needed */}
-          {/* <Route
-            exact
-            path="/market"
-            render={() => (
-              <Page>
-                <Market />
-              </Page>
-            )}
-          /> */}
-          {/* Additional routes can be uncommented as needed */}
-        </Switch>
-      </Suspense>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <Suspense fallback={<LoadingFallback />}>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Page>
+                  <Home />
+                </Page>
+              )}
+            />
+            <Route
+              exact
+              path="/contact"
+              render={() => (
+                <Page>
+                  <Contact />
+                </Page>
+              )}
+            />
+            {/* Uncomment routes as needed */}
+            {/* <Route
+              exact
+              path="/market"
+              render={() => (
+                <Page>
+                  <Market />
+                </Page>
+              )}
+            /> */}
+            {/* Additional routes can be uncommented as needed */}
+          </Switch>
+        </Suspense>
+      </Router>
+    </LanguageProvider>
   );
 }
 

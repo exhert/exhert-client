@@ -3,8 +3,10 @@ import cn from "classnames";
 import styles from "./Security.module.sass";
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation } from "framer-motion";
+import { useTranslation } from "../../../utils/useTranslation";
 
 const Security = () => {
+  const { t } = useTranslation();
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.2,
@@ -76,12 +78,8 @@ const Security = () => {
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h2 className={cn("h2", styles.title)}>Your Safety, Our Priority</h2>
-            <p className={styles.description}>
-              Even before launch, we're building Exhert with security at its core. Our platform 
-              will feature bank-grade encryption, secure escrow systems, and advanced fraud detection 
-              to ensure your assets remain protected at all times.
-            </p>
+            <h2 className={cn("h2", styles.title)}>{t('securityTitle')}</h2>
+            <p className={styles.description}>{t('securityDesc')}</p>
             
             <motion.div 
               className={styles.supportContainer}
@@ -128,8 +126,8 @@ const Security = () => {
                   <div className={styles.supportValue}>
                     {Math.round(supportHours)}/7
                   </div>
-                  <div className={styles.supportLabel}>Support Available</div>
-                  <div className={styles.supportSubtext}>Even during waitlist phase</div>
+                  <div className={styles.supportLabel}>{t('supportAvailable')}</div>
+                  <div className={styles.supportSubtext}>{t('evenDuringWaitlist')}</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -139,7 +137,7 @@ const Security = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Learn About Our Security
+              {t('learnSecurity')}
             </motion.button>
           </motion.div>
           
@@ -223,8 +221,8 @@ const Security = () => {
                   </motion.svg>
                 </div>
                 <div className={styles.badgeText}>
-                  <div className={styles.badgeTitle}>Exhert Secure</div>
-                  <div className={styles.badgeSubtitle}>Built for Protection</div>
+                  <div className={styles.badgeTitle}>{t('exhertSecure')}</div>
+                  <div className={styles.badgeSubtitle}>{t('builtForProtection')}</div>
                 </div>
               </div>
               <motion.div 
@@ -243,16 +241,7 @@ const Security = () => {
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
                 <div className={styles.certIcon}>SSL</div>
-                <div className={styles.certText}>256-bit Encryption</div>
-              </motion.div>
-              <motion.div 
-                className={styles.certBadge}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 1, duration: 0.5 }}
-              >
-                <div className={styles.certIcon}>2FA</div>
-                <div className={styles.certText}>Authentication</div>
+                <div className={styles.certText}>{t('encryption')}</div>
               </motion.div>
             </div>
           </motion.div>

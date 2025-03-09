@@ -3,42 +3,44 @@ import cn from "classnames";
 import styles from "./Features.module.sass";
 import { useInView } from 'react-intersection-observer';
 import { motion } from "framer-motion";
-
-const features = [
-  {
-    icon: "p2p",
-    title: "Seamless P2P Trades",
-    description: "Experience direct, peer-to-peer transactions with zero friction."
-  },
-  {
-    icon: "security",
-    title: "Ultra-Secure Transactions",
-    description: "Your assets are protected with bank-grade encryption."
-  },
-  {
-    icon: "speed",
-    title: "Lightning-Fast Execution",
-    description: "Complete trades in seconds with our high-speed engine."
-  },
-  {
-    icon: "network",
-    title: "Verified Traders Network",
-    description: "Trade with real users verified by our AI-driven security."
-  }
-];
+import { useTranslation } from "../../../utils/useTranslation";
 
 const Features = () => {
+  const { t } = useTranslation();
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: false
   });
 
+  const features = [
+    {
+      icon: "p2p",
+      title: t('p2pTrades'),
+      description: t('p2pDesc')
+    },
+    {
+      icon: "security",
+      title: t('ultraSecure'),
+      description: t('ultraSecureDesc')
+    },
+    {
+      icon: "speed",
+      title: t('lightningFast'),
+      description: t('lightningFastDesc')
+    },
+    {
+      icon: "network",
+      title: t('verifiedNetwork'),
+      description: t('verifiedNetworkDesc')
+    }
+  ];
+
   return (
     <div className={cn("section", styles.section)} ref={ref}>
       <div className={cn("container", styles.container)}>
         <div className={styles.head}>
-          <h2 className={cn("h2", styles.title)}>Key Features</h2>
-          <div className={styles.subtitle}>What makes Exhert different</div>
+          <h2 className={cn("h2", styles.title)}>{t('featuresTitle')}</h2>
+          <div className={styles.subtitle}>{t('featuresSubtitle')}</div>
         </div>
         
         <div className={styles.features}>
@@ -58,6 +60,10 @@ const Features = () => {
                 boxShadow: "0 15px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 192, 0, 0.2)" 
               }}
             >
+              <div className={styles.contentWrapper}>
+                <h3 className={styles.featureTitle}>{item.title}</h3>
+                <p className={styles.featureDescription}>{item.description}</p>
+              </div>
               <div className={styles.iconWrapper}>
                 <motion.div 
                   className={styles.iconBg}
@@ -269,11 +275,6 @@ const Features = () => {
                   )}
                 </motion.div>
               </div>
-              <div className={styles.content}>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardDescription}>{item.description}</p>
-              </div>
-              <div className={styles.shine}></div>
             </motion.div>
           ))}
         </div>

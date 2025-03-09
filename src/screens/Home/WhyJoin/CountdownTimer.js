@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './WhyJoin.module.sass';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from '../../../utils/useTranslation';
 
 const CountdownTimer = () => {
+  const { t } = useTranslation();
+  
   const calculateTimeLeft = () => {
     const targetDate = new Date('2025-04-30T00:00:00');
     const now = new Date();
@@ -83,7 +86,7 @@ const CountdownTimer = () => {
           >
             {padNumber(timeLeft.days)}
           </motion.span>
-          <span className={styles.label}>DAYS</span>
+          <span className={styles.label}>{t('days')}</span>
         </div>
         <div className={styles.separator}>:</div>
         <div className={styles.timeUnit}>
@@ -97,7 +100,7 @@ const CountdownTimer = () => {
           >
             {padNumber(timeLeft.hours)}
           </motion.span>
-          <span className={styles.label}>HRS</span>
+          <span className={styles.label}>{t('hours')}</span>
         </div>
         <div className={styles.separator}>:</div>
         <div className={styles.timeUnit}>
@@ -111,7 +114,7 @@ const CountdownTimer = () => {
           >
             {padNumber(timeLeft.minutes)}
           </motion.span>
-          <span className={styles.label}>MIN</span>
+          <span className={styles.label}>{t('minutes')}</span>
         </div>
         <div className={styles.separator}>:</div>
         <div className={styles.timeUnit}>
@@ -125,7 +128,7 @@ const CountdownTimer = () => {
           >
             {padNumber(timeLeft.seconds)}
           </motion.span>
-          <span className={styles.label}>SEC</span>
+          <span className={styles.label}>{t('seconds')}</span>
         </div>
       </motion.div>
       <div className={styles.glitchLayers}>

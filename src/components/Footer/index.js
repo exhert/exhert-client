@@ -8,6 +8,7 @@ import Image from "../Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTiktok, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
+import { useTranslation } from "../../utils/useTranslation";
 
 const socials = [
   {
@@ -37,6 +38,7 @@ const socials = [
 ];
 
 const Footer = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
@@ -60,7 +62,7 @@ const Footer = () => {
                 />
               </Link>
               <p className={styles.tagline}>
-                The future of secure P2P crypto trading
+                {t('futureOfTrading')}
               </p>
               <div className={styles.socials}>
                 {socials.map((x, index) => (
@@ -75,21 +77,17 @@ const Footer = () => {
                       backgroundColor: "rgba(255, 192, 0, 0.15)" 
                     }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    
                   >
                     <FontAwesomeIcon icon={x.title} size={x.size} />
-                    
                   </motion.a>
                 ))}
               </div>
             </div>
             
             <div className={styles.footerNav}>
-              </div>
-              
               <div className={styles.navColumn}>
                 <div className={styles.navColumn}>
-                  <h4 className={styles.navTitle}>Contact</h4>
+                  <h4 className={styles.navTitle}>{t('contact')}</h4>
                   <div className={styles.navLinks}>
                     <motion.div
                       whileHover={{ x: 5 }}
@@ -100,10 +98,11 @@ const Footer = () => {
                         activeClassName={styles.active}
                         to="/contact"
                       >
-                        Contact Us
+                        {t('contactUs')}
                       </NavLink>
                     </motion.div>
                   </div>
+                </div>
               </div>
             </div>
           </div>
@@ -113,7 +112,7 @@ const Footer = () => {
       <div className={styles.footerBottom}>
         <div className={cn("container", styles.container)}>
           <div className={styles.copyright}>
-            © 2024 Exhert. All rights reserved
+            © 2025 Exhert. {t('allRightsReserved')}
           </div>
         </div>
       </div>

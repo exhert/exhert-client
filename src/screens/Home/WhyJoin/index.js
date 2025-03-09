@@ -4,36 +4,37 @@ import styles from "./WhyJoin.module.sass";
 import { useInView } from 'react-intersection-observer';
 import CountdownTimer from "./CountdownTimer";
 import { motion } from "framer-motion";
-
-
-const benefits = [
-  {
-    icon: "access",
-    title: "First Access to the Platform",
-    description: "Be the first to trade before public launch."
-  },
-  {
-    icon: "fees",
-    title: "Zero Fees for Early Traders",
-    description: "Enjoy fee-free transactions during beta."
-  },
-  {
-    icon: "community",
-    title: "Exclusive Community Access",
-    description: "Get insights and priority support from our team."
-  },
-  {
-    icon: "rewards",
-    title: "Early Bird Rewards",
-    description: "Special bonuses for first movers."
-  }
-];
+import { useTranslation } from "../../../utils/useTranslation";
 
 const WhyJoin = () => {
+  const { t } = useTranslation();
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: false
   });
+
+  const benefits = [
+    {
+      icon: "access",
+      title: t('firstAccess'),
+      description: t('firstAccessDesc')
+    },
+    {
+      icon: "fees",
+      title: t('zeroFees'),
+      description: t('zeroFeesDesc')
+    },
+    {
+      icon: "community",
+      title: t('exclusiveCommunity'),
+      description: t('exclusiveCommunityDesc')
+    },
+    {
+      icon: "rewards",
+      title: t('earlyBirdRewards'),
+      description: t('earlyBirdRewardsDesc')
+    }
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -97,8 +98,8 @@ const WhyJoin = () => {
           animate={inView ? "visible" : "hidden"}
           variants={headingVariants}
         >
-          <h2 className={cn("h2", styles.title)}>Why Join the Waitlist?</h2>
-          <div className={styles.subtitle}>Exclusive perks for early users:</div>
+          <h2 className={cn("h2", styles.title)}>{t('whyJoinTitle')}</h2>
+          <div className={styles.subtitle}>{t('exclusivePerks')}</div>
         </motion.div>
         
         <motion.div 
@@ -117,6 +118,10 @@ const WhyJoin = () => {
                 boxShadow: "0 15px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 192, 0, 0.2)" 
               }}
             >
+              <div className={styles.contentWrapper}>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+                <p className={styles.cardDescription}>{item.description}</p>
+              </div>
               <motion.div 
                 className={styles.iconWrapper}
                 whileHover={{ scale: 1.05 }}
@@ -269,16 +274,6 @@ const WhyJoin = () => {
                   )}
                 </div>
               </motion.div>
-              <div className={styles.content}>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardDescription}>{item.description}</p>
-              </div>
-              <motion.div 
-                className={styles.shine}
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-              ></motion.div>
             </motion.div>
           ))}
         </motion.div>
@@ -304,8 +299,8 @@ const WhyJoin = () => {
             transition={{ duration: 0.3 }}
           >
             <div className={styles.urgencyContent}>
-              <h3 className={styles.urgencyTitle}>Limited Spots Available!</h3>
-              <p className={styles.urgencyText}>Secure yours now.</p>
+              <h3 className={styles.urgencyTitle}>{t('limitedSpots')}</h3>
+              <p className={styles.urgencyText}>{t('secureSpot')}</p>
               <CountdownTimer />
             </div>
             <motion.button 
@@ -314,7 +309,7 @@ const WhyJoin = () => {
               whileTap={{ scale: 0.95 }}
               onClick={scrollToFinalCTA}
             >
-              Join the Waitlist
+              {t('joinWaitlistBtn')}
               <motion.span 
                 className={styles.buttonRipple}
                 animate={{ 

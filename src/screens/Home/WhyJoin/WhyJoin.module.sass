@@ -68,6 +68,8 @@ $light-text: #ffffff
 .benefitCard
   position: relative
   display: flex
+  flex-direction: row
+  justify-content: space-between
   align-items: flex-start
   padding: 30px
   background: rgba(255, 255, 255, 0.03)
@@ -95,13 +97,22 @@ $light-text: #ffffff
   +m
     padding: 24px
 
-.iconWrapper
-  position: relative
-  margin-right: 20px
-  flex-shrink: 0
+.contentWrapper
+  flex: 1
+  margin-right: 24px
   
   +m
     margin-right: 16px
+
+.iconWrapper
+  position: relative
+  flex-shrink: 0
+  width: 60px
+  height: 60px
+  
+  +m
+    width: 50px
+    height: 50px
 
 .iconBg
   position: absolute
@@ -138,17 +149,15 @@ $light-text: #ffffff
       width: 24px
       height: 24px
 
-.content
-  flex-grow: 1
-
 .cardTitle
-  margin-bottom: 8px
+  margin-bottom: 12px
   font-size: 20px
   font-weight: 600
   color: $light-text
   
   +m
     font-size: 18px
+    margin-bottom: 10px
 
 .cardDescription
   font-size: 16px

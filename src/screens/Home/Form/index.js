@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import cn from "classnames";
 import styles from "./Form.module.sass";
 import { toast } from "react-toastify";
+import { useTranslation } from "../../../utils/useTranslation";
 
 const GRAPHQL_ENDPOINT = "https://v1.exhert.com/graphql";
 
@@ -18,11 +19,12 @@ const createEarlyAccessMutation = `
 const Form = ({
   className,
   big,
-  placeholder = "Enter your email",
-  buttonText = "Join Waitlist",
-  loadingText = "Joining...",
-  toastSuccessMessage = "Successfully joined the waitlist!",
+  placeholder,
+  buttonText,
+  loadingText,
+  toastSuccessMessage,
 }) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -51,9 +53,9 @@ const Form = ({
 
       if (result.errors) {
         // Handle GraphQL errors
-        const errorMessage = result.errors[0]?.message || "Failed to join waitlist";
+        const errorMessage = result.errors[0]?.message || t('joinWaitlistError');
         if (errorMessage.includes("Unique constraint")) {
-          toast.warn("This email is already on the waitlist", { 
+          toast.warn(t('emailExists'), { 
             className: styles["toast-warning"] 
           });
         } else {
@@ -61,12 +63,12 @@ const Form = ({
         }
       } else {
         // Success
-        toast.success(toastSuccessMessage);
+        toast.success(t('joinWaitlistSuccess'));
         setEmail(""); // Clear the form
       }
     } catch (error) {
       console.error(error);
-      toast.error("Failed to join waitlist. Please try again.");
+      toast.error(t('joinWaitlistError'));
     } finally {
       setIsSubmitting(false);
     }
@@ -84,7 +86,7 @@ const Form = ({
           className={styles.input}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder={placeholder}
+          placeholder={placeholder || t('enterEmail')}
           type="email"
           name="email"
           required
@@ -95,7 +97,7 @@ const Form = ({
           type="submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? loadingText : buttonText}
+          {isSubmitting ? (loadingText || t('joining')) : (buttonText || t('joinWaitlistBtn'))}
         </button>
       </div>
     </form>

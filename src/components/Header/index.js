@@ -6,17 +6,20 @@ import Image from "../Image";
 import Dropdown from "./Dropdown";
 import Icon from "../Icon";
 import Theme from "../Theme";
-
-const navigation = [
-  {
-    title: "Contact Us",
-    url: "/contact",
-  },
-];
+import LanguageToggle from "../LanguageToggle";
+import { useTranslation } from "../../utils/useTranslation";
 
 const Header = ({ headerWide }) => {
+  const { t } = useTranslation();
   const [visibleNav, setVisibleNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  const navigation = [
+    {
+      title: t('contact'),
+      url: "/contact",
+    },
+  ];
   
   useEffect(() => {
     const handleScroll = () => {
@@ -78,9 +81,10 @@ const Header = ({ headerWide }) => {
               )}
             </nav>
           </div>
-          {/* <div className={styles.control}>
-            <Theme className={styles.theme} icon />
-          </div> */}
+          <div className={styles.control}>
+            <LanguageToggle className={styles.languageToggle} />
+            {/* <Theme className={styles.theme} icon /> */}
+          </div>
           <button
             className={cn(styles.burger, { [styles.active]: visibleNav })}
             onClick={() => setVisibleNav(!visibleNav)}

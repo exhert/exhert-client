@@ -7,6 +7,7 @@ import Cards from "./Cards";
 import Form from "../Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faFacebook, faTiktok, faTwitter, faInstagram} from "@fortawesome/free-brands-svg-icons"
+import { useTranslation } from "../../../utils/useTranslation";
 
 
 const socials = [
@@ -33,6 +34,7 @@ const socials = [
 ];
 
 const Main = ({ scrollToRef }) => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isGlowing, setIsGlowing] = useState(false);
@@ -123,51 +125,48 @@ const Main = ({ scrollToRef }) => {
         </div>
         
         <div className={styles.heroContent}>
-          
-          
           <h1 className={styles.heroTitle}>
             <div className={styles.titleLine}>
-              <span className={styles.word}>Trade</span>
-              <span className={cn(styles.word, styles.highlight)}>safer</span>
+              <span className={styles.word}>{t('trade')}</span>
+              <span className={cn(styles.word, styles.highlight)}>{t('safer')}</span>
               <span className={styles.word}>,</span>
             </div>
             <div className={styles.titleLine}>
-              <span className={cn(styles.word, styles.highlight)}>faster</span>
-              <span className={styles.word}>and</span>
-              <span className={cn(styles.word, styles.highlight)}>better</span>
+              <span className={cn(styles.word, styles.highlight)}>{t('faster')}</span>
+              <span className={styles.word}>{t('and')}</span>
+              <span className={cn(styles.word, styles.highlight)}>{t('better')}</span>
               <span className={styles.word}>.</span>
             </div>
           </h1>
           
-          <p className={styles.heroSubTitle}>Don't think about the risks, just trade.</p>
+          <p className={styles.heroSubTitle}>{t('tradingSubtitle')}</p>
           
           <Form className={cn(styles.heroForm, { [styles.glowEffect]: isGlowing })} />
           
-        
-        <div className={styles.heroShapes}>
-          <div className={cn(styles.shape, styles.shape1)}></div>
-          <div className={cn(styles.shape, styles.shape2)}></div>
-          <div className={cn(styles.shape, styles.shape3)}></div>
-        </div>
-      </div>
-
-          <div className={styles.scrollIndicator}>
-            <div className={styles.mouse}>
-              <div className={styles.wheel}></div>
-            </div>
-            <div className={styles.scrollText}>Scroll to explore</div>
+          <div className={styles.heroShapes}>
+            <div className={cn(styles.shape, styles.shape1)}></div>
+            <div className={cn(styles.shape, styles.shape2)}></div>
+            <div className={cn(styles.shape, styles.shape3)}></div>
           </div>
-      {/* Floating Button
-      <button 
-        className={cn(styles.floatingButton, {
-          [styles.visible]: isVisible
-        })}
-        onClick={scrollToForm}
-      >
-        <span>Join the Waitlist</span>
-        <div className={styles.rippleEffect}></div>
-      </button> */}
         </div>
+
+        <div className={styles.scrollIndicator}>
+          <div className={styles.mouse}>
+            <div className={styles.wheel}></div>
+          </div>
+          <div className={styles.scrollText}>{t('scrollToExplore')}</div>
+        </div>
+        
+        <button 
+          className={cn(styles.floatingButton, {
+            [styles.visible]: isVisible
+          })}
+          onClick={scrollToForm}
+        >
+          <span>{t('joinWaitlist')}</span>
+          <div className={styles.rippleEffect}></div>
+        </button>
+      </div>
     </div>
   );
 };

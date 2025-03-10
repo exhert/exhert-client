@@ -142,6 +142,11 @@ export const translations = {
     verificationTimeAnswer: 'Account verification typically takes under 24 hours, depending on the volume of requests. Basic verification is usually faster, while advanced verification requiring additional documentation may take longer to process.',
     mobileApp: 'Is there a mobile app for Exhert?',
     mobileAppAnswer: 'Not at the moment, but we are working on it.',
+
+    // 404 Page
+    pageNotFound: 'Page Not Found',
+    pageNotFoundDesc: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.',
+    backHome: 'Back to Home',
   },
   fr: {
     // Header
@@ -286,5 +291,10 @@ export const translations = {
     verificationTimeAnswer: 'La vérification du compte prend généralement moins de 24 heures, selon le volume des demandes. La vérification de base est généralement plus rapide, tandis que la vérification avancée nécessitant des documents supplémentaires peut prendre plus de temps.',
     mobileApp: 'Y a-t-il une application mobile pour Exhert ?',
     mobileAppAnswer: 'Pas pour le moment, mais nous y travaillons.',
+
+    // 404 Page
+    pageNotFound: 'Page Non Trouvée',
+    pageNotFoundDesc: 'La page que vous recherchez a peut-être été supprimée, son nom a changé ou est temporairement indisponible.',
+    backHome: 'Retour à l\'Accueil',
   }
 }; 

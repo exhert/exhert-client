@@ -1,0 +1,103 @@
+@import ../../styles/helpers
+
+// Variables
+$primary-color: #3772FF
+$secondary-color: #FFC000
+$dark-bg: #0A0A0A
+$light-text: #FFFFFF
+
+.page
+  position: relative
+  min-height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  background: linear-gradient(135deg, $dark-bg, darken($dark-bg, 3%))
+  overflow: hidden
+
+.overlay
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: linear-gradient(45deg, rgba($primary-color, 0.03), rgba($secondary-color, 0.03))
+  pointer-events: none
+
+.content
+  position: relative
+  z-index: 1
+  text-align: center
+  padding: 3rem
+  max-width: 600px
+  margin: 0 auto
+
+.title
+  font-size: 120px
+  font-weight: 700
+  margin: 0 0 24px
+  color: $light-text
+  letter-spacing: -2px
+  line-height: 1
+  
+  +d
+    font-size: 100px
+  
+  +t
+    font-size: 80px
+  
+  +m
+    font-size: 64px
+
+.subtitle
+  font-size: 28px
+  color: $light-text
+  margin: 0 0 16px
+  font-weight: 600
+  
+  +t
+    font-size: 24px
+  
+  +m
+    font-size: 20px
+
+.description
+  font-size: 17px
+  color: rgba($light-text, 0.7)
+  margin: 0 auto 40px
+  line-height: 1.6
+  max-width: 440px
+  
+  +m
+    font-size: 16px
+    margin-bottom: 32px
+
+.button
+  display: inline-flex
+  align-items: center
+  gap: 12px
+  padding: 14px 28px
+  background-color: rgba($light-text, 0.1)
+  border: 1px solid rgba($light-text, 0.15)
+  border-radius: 6px
+  color: $light-text
+  font-size: 16px
+  font-weight: 500
+  text-decoration: none
+  transition: all 0.2s ease
+  
+  svg
+    width: 18px
+    height: 18px
+    transition: transform 0.2s ease
+  
+  &:hover
+    background-color: rgba($light-text, 0.15)
+    border-color: rgba($light-text, 0.25)
+    
+    svg
+      transform: translateX(-4px)
+  
+  +m
+    padding: 12px 24px
+    font-size: 15px

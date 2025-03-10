@@ -7,29 +7,7 @@ import { LanguageProvider } from "./utils/LanguageContext";
 // Lazy load all screens
 const Home = lazy(() => import("./screens/Home"));
 const Contact = lazy(() => import("./screens/Contact"));
-// const Market = lazy(() => import("./screens/Market"));
-// const LearnCrypto = lazy(() => import("./screens/LearnCrypto"));
-// const LearnCryptoDetails = lazy(() => import("./screens/LearnCryptoDetails"));
-// const Notifications = lazy(() => import("./screens/Notifications"));
-// const Activity = lazy(() => import("./screens/Activity"));
-// const Exchange = lazy(() => import("./screens/Exchange"));
-// const WalletOverview = lazy(() => import("./screens/WalletOverview"));
-// const WalletOverviewDetails = lazy(() => import("./screens/WalletOverviewDetails"));
-// const WalletMargin = lazy(() => import("./screens/WalletMargin"));
-// const FiatAndSpot = lazy(() => import("./screens/FiatAndSpot"));
-// const DepositFiat = lazy(() => import("./screens/DepositFiat"));
-// const BuyCrypto = lazy(() => import("./screens/BuyCrypto"));
-// const SellCrypto = lazy(() => import("./screens/SellCrypto"));
-// const ProfileInfo = lazy(() => import("./screens/ProfileInfo"));
-// const Referrals = lazy(() => import("./screens/Referrals"));
-// const ApiKeys = lazy(() => import("./screens/ApiKeys"));
-// const SessionsAndLoginHistory = lazy(() => import("./screens/SessionsAndLoginHistory"));
-// const TwoFa = lazy(() => import("./screens/TwoFa"));
-// const ChangePassword = lazy(() => import("./screens/ChangePassword"));
-// const SignIn = lazy(() => import("./screens/SignIn"));
-// const SignUp = lazy(() => import("./screens/SignUp"));
-// const ForgotPassword = lazy(() => import("./screens/ForgotPassword"));
-// const PageList = lazy(() => import("./screens/PageList"));
+const NotFound = lazy(() => import("./screens/NotFound"));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -80,17 +58,14 @@ function App() {
                 </Page>
               )}
             />
-            {/* Uncomment routes as needed */}
-            {/* <Route
-              exact
-              path="/market"
+            <Route
+              path="*"
               render={() => (
                 <Page>
-                  <Market />
+                  <NotFound />
                 </Page>
               )}
-            /> */}
-            {/* Additional routes can be uncommented as needed */}
+            />
           </Switch>
         </Suspense>
       </Router>

@@ -101,6 +101,14 @@ const Footer = () => {
                         {t('contactUs')}
                       </NavLink>
                     </motion.div>
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <a href="mailto:info@exhert.com" className={styles.navLink}>
+                        Email: info@exhert.com
+                      </a>
+                    </motion.div>
                   </div>
                 </div>
               </div>

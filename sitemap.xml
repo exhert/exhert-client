@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://exhert.com/</loc>
+    <lastmod>2023-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://exhert.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://exhert.com/?lang=fr"/>
+  </url>
+  <url>
+    <loc>https://exhert.com/about-us</loc>
+    <lastmod>2023-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://exhert.com/about-us"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://exhert.com/about-us?lang=fr"/>
+  </url>
+  <url>
+    <loc>https://exhert.com/contact</loc>
+    <lastmod>2023-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://exhert.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://exhert.com/contact?lang=fr"/>
+  </url>
+</urlset> 

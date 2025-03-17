@@ -4,7 +4,11 @@ import styles from './LanguageToggle.module.sass';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LanguageToggle = () => {
-  const { language, toggleLanguage } = useLanguage();
+  const { language, changeLanguage } = useLanguage();
+
+  const toggleLanguage = () => {
+    changeLanguage(language === 'en' ? 'fr' : 'en');
+  };
 
   const variants = {
     initial: { 

@@ -104,7 +104,7 @@ const Header = ({ headerWide }) => {
             </nav>
           </div>
           <div className={styles.control}>
-            <LanguageSwitcher />
+            <LanguageToggle />
             {/* <Theme className={styles.theme} icon /> */}
           </div>
           <button

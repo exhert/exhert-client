@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./AboutUs.module.sass";
 import { motion } from "framer-motion";
 import { useTranslation } from "../../utils/useTranslation";
+import SEOHelmet from "../../components/SEOHelmet";
 
 const AboutUs = () => {
   const { t, language } = useTranslation();
@@ -70,8 +71,30 @@ const AboutUs = () => {
     tradeTagline: t('tradeTagline') || "Trade safer. Trade faster. Trade smarter."
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Exhert",
+    "url": "https://exhert.com",
+    "logo": "https://exhert.com/images/logo-ex.png",
+    "description": "A secure, escrow-backed crypto trading platform for fast, stress-free transactions.",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61561077623847",
+      "https://x.com/EXHERTexchange?t=s5Jd3JQUc8RNTCT8DVlO9g&s=08",
+      "https://www.instagram.com/exhertexchange?igsh=MTFrbDNtaXI4NDhpeQ==",
+      "https://www.tiktok.com/@exhert7?_t=8n7G9UteVaX&_r=1"
+    ]
+  };
+
   return (
     <div className={styles.aboutUs}>
+      <SEOHelmet 
+        title={`${content.aboutUs} | Exhert - ${content.title}`}
+        description="Exhert is revolutionizing crypto trading with a secure, escrow-backed platform that eliminates risks and delays. Learn about our mission to make crypto trading accessible across Africa and beyond."
+        keywords="secure crypto trading, escrow crypto, P2P trading platform, mobile money crypto, Africa crypto exchange, Exhert"
+        canonicalUrl="https://exhert.com/about-us"
+        structuredData={structuredData}
+      />
       <div className={styles.hero}>
         <div className={styles.container}>
           <motion.h1 

@@ -23,7 +23,8 @@ const Contact = () => {
       <SEOHelmet 
         title="Contact Us | Exhert"
         description="Have questions about Exhert's secure crypto trading platform? Contact our team for support, partnership inquiries, or general information."
-        keywords="contact Exhert, crypto trading support, Exhert help, crypto exchange contact"
+        keywords="contact Exhert, crypto trading support, Exhert help, crypto exchange contact, Cameroon crypto, Cameroon mobile money crypto"
+        keywordsFr="contacter Exhert, support trading crypto, aide Exhert, contact échange crypto, crypto-monnaie Camérounaise, paiement mobile Camérounais"
         canonicalUrl="https://exhert.com/contact"
         structuredData={structuredData}
       />

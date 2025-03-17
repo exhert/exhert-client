@@ -27,8 +27,9 @@ const Home = () => {
     <>
       <SEOHelmet 
         title="Exhert | Secure Crypto Trading Platform"
-        description="Exhert provides a secure, escrow-backed crypto trading platform for fast, stress-free transactions across Africa and beyond."
-        keywords="crypto trading, secure crypto, escrow crypto, P2P trading, Africa crypto, mobile money crypto"
+        description="Exhert provides a secure, escrow-backed crypto trading platform for fast, stress-free transactions across Cameroon, Africa and beyond."
+        keywords="crypto trading, secure crypto, escrow crypto, P2P trading, Africa crypto, mobile money crypto, Cameroon crypto, Cameroon mobile money crypto"
+        keywordsFr="trading crypto, plateforme d'échange sécurisée, crypto-monnaie Afrique, paiement mobile, échange P2P, séquestre crypto, crypto-monnaie Camérounaise, paiement mobile Camérounais"
         canonicalUrl="https://exhert.com"
         structuredData={structuredData}
       />

@@ -92,6 +92,7 @@ const AboutUs = () => {
         title={`${content.aboutUs} | Exhert - ${content.title}`}
         description="Exhert is revolutionizing crypto trading with a secure, escrow-backed platform that eliminates risks and delays. Learn about our mission to make crypto trading accessible across Africa and beyond."
         keywords="secure crypto trading, escrow crypto, P2P trading platform, mobile money crypto, Africa crypto exchange, Exhert"
+        keywordsFr="trading crypto sécurisé, plateforme d'échange P2P, crypto-monnaie Afrique, paiement mobile, séquestre crypto, Exhert"
         canonicalUrl="https://exhert.com/about-us"
         structuredData={structuredData}
       />

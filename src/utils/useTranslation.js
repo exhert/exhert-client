@@ -2,7 +2,7 @@ import { useLanguage } from './LanguageContext';
 import { translations } from './translations';
 
 export const useTranslation = () => {
-  const { language } = useLanguage();
+  const { language, changeLanguage } = useLanguage();
 
   const t = (key) => {
     const translation = translations[language]?.[key];
@@ -13,5 +13,5 @@ export const useTranslation = () => {
     return translation;
   };
 
-  return { t };
+  return { t, language, changeLanguage };
 }; 

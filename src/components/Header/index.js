@@ -8,6 +8,7 @@ import Icon from "../Icon";
 import Theme from "../Theme";
 import LanguageToggle from "../LanguageToggle";
 import { useTranslation } from "../../utils/useTranslation";
+import LanguageSwitcher from '../LanguageSwitcher';
 
 const navLinks = [
   {
@@ -103,7 +104,7 @@ const Header = ({ headerWide }) => {
             </nav>
           </div>
           <div className={styles.control}>
-            <LanguageToggle className={styles.languageToggle} />
+            <LanguageSwitcher />
             {/* <Theme className={styles.theme} icon /> */}
           </div>
           <button

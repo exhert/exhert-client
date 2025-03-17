@@ -147,6 +147,38 @@ export const translations = {
     pageNotFound: 'Page Not Found',
     pageNotFoundDesc: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.',
     backHome: 'Back to Home',
+  
+    // About Us page
+    aboutUs: "About Us",
+    aboutUsTitle: "The Future of Secure Crypto Trading",
+    aboutUsSubtitle: "Fast. Secure. Stress-free.",
+    ourMission: "Our Mission",
+    missionText1: "Buying and selling crypto should be fast, secure, and stress-free. Yet, in many regions, especially across Africa, crypto traders are forced into risky P2P transactions, dealing with scams, payment delays, and unreliable platforms.",
+    missionText2: "Exhert is here to change that.",
+    missionText3: "We've built a seamless, escrow-backed trading platform where users can buy and sell crypto instantly without worrying about counterparty risks. No unnecessary confirmations. No delays. Just secure transactions, handled effortlessly.",
+    
+    howExhertWorks: "How Exhert Works",
+    exhertSimple: "Exhert makes crypto trading simple:",
+    secureEscrow: "Secure escrow protection",
+    escrowDescription: "Both fiat and crypto are held safely until the trade is complete.",
+    instantTransactions: "Instant transactions",
+    transactionsDescription: "No need to wait for payment confirmations.",
+    mobileIntegration: "Full mobile money integration",
+    integrationDescription: "Trade using MTN MoMo, Orange Money, and more.",
+    everyTrade: "Every trade is designed to be fast, effortless, and protected.",
+    
+    whyWeBuilt: "Why We Built Exhert",
+    whyText1: "Most centralized exchanges don't support local payment methods. Banks block transactions. P2P traders are left to negotiate with strangers, hoping they don't get scammed.",
+    whyText2: "We built Exhert to eliminate these risks and provide a trustworthy alternative—a platform where users can trade with peace of mind.",
+    
+    ourVision: "Our Vision",
+    visionText: "We're starting in Africa, but the goal is global: a world where anyone can trade crypto securely and seamlessly, regardless of location.",
+    
+    joinMovement: "Join the Movement",
+    joinText: "Exhert is now in early access, and during our beta phase, trading is completely free. This is your chance to be among the first to experience the future of P2P crypto trading.",
+    joinWaitlist: "Join the Waitlist",
+    tradeTagline: "Trade safer. Trade faster. Trade smarter.",
+    company: "Exhert"
   },
   fr: {
     // Header
@@ -296,5 +328,39 @@ export const translations = {
     pageNotFound: 'Page Non Trouvée',
     pageNotFoundDesc: 'La page que vous recherchez a peut-être été supprimée, son nom a changé ou est temporairement indisponible.',
     backHome: 'Retour à l\'Accueil',
+
+    // About Us page
+    aboutUs: "À Propos",
+    aboutUsTitle: "L'Avenir du Trading Crypto Sécurisé",
+    aboutUsSubtitle: "Rapide. Sécurisé. Sans stress.",
+    ourMission: "Notre Mission",
+    missionText1: "L'achat et la vente de crypto devraient être rapides, sécurisés et sans stress. Pourtant, dans de nombreuses régions, notamment en Afrique, les traders de crypto sont contraints à des transactions P2P risquées, confrontés à des arnaques, des retards de paiement et des plateformes peu fiables.",
+    missionText2: "Exhert est là pour changer cela.",
+    missionText3: "Nous avons construit une plateforme de trading fluide, soutenue par un système d'entiercement, où les utilisateurs peuvent acheter et vendre des cryptomonnaies instantanément sans s'inquiéter des risques de contrepartie. Pas de confirmations inutiles. Pas de retards. Juste des transactions sécurisées, traitées sans effort.",
+    
+    howExhertWorks: "Comment Fonctionne Exhert",
+    exhertSimple: "Exhert simplifie le trading de crypto :",
+    secureEscrow: "Protection par entiercement sécurisé",
+    escrowDescription: "Les monnaies fiduciaires et les cryptomonnaies sont conservées en toute sécurité jusqu'à ce que la transaction soit terminée.",
+    instantTransactions: "Transactions instantanées",
+    transactionsDescription: "Pas besoin d'attendre les confirmations de paiement.",
+    mobileIntegration: "Intégration complète avec mobile money",
+    integrationDescription: "Échangez en utilisant MTN MoMo, Orange Money, et plus encore.",
+    everyTrade: "Chaque échange est conçu pour être rapide, sans effort et protégé.",
+    
+    whyWeBuilt: "Pourquoi Nous Avons Créé Exhert",
+    whyText1: "La plupart des échanges centralisés ne prennent pas en charge les méthodes de paiement locales. Les banques bloquent les transactions. Les traders P2P sont laissés à négocier avec des inconnus, en espérant ne pas se faire arnaquer.",
+    whyText2: "Nous avons créé Exhert pour éliminer ces risques et fournir une alternative fiable—une plateforme où les utilisateurs peuvent échanger en toute tranquillité d'esprit.",
+    
+    ourVision: "Notre Vision",
+    visionText: "Nous commençons en Afrique, mais l'objectif est mondial : un monde où chacun peut échanger des cryptomonnaies de manière sécurisée et fluide, quel que soit son emplacement.",
+    
+    joinMovement: "Rejoignez le Mouvement",
+    joinText: "Exhert est maintenant en accès anticipé, et pendant notre phase bêta, les échanges sont complètement gratuits. C'est votre chance d'être parmi les premiers à expérimenter l'avenir du trading P2P de cryptomonnaies.",
+    joinWaitlist: "Rejoindre la Liste d'Attente",
+    tradeTagline: "Échangez plus sûrement. Échangez plus rapidement. Échangez plus intelligemment.",
+    
+    company: "Exhert" 
+
   }
 }; 

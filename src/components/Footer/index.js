@@ -41,6 +41,21 @@ const Footer = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
 
+  // Helper function to get the correct label for navigation items
+  const getNavLabel = (title) => {
+    // Simple mapping for translation keys
+    const translationMap = {
+      "Home": "home",
+      "About Us": "aboutUs",
+      "Contact": "contact"
+    };
+    
+    const key = translationMap[title];
+    // Try to get translation, if not available or empty, use the original title
+    const translated = t(key);
+    return translated && translated !== key ? translated : title;
+  };
+
   const handleSubmit = (e) => {
     // Handle newsletter submission
     console.log("Newsletter subscription:", email);
@@ -62,7 +77,7 @@ const Footer = () => {
                 />
               </Link>
               <p className={styles.tagline}>
-                {t('futureOfTrading')}
+                {t('futureOfTrading') || "The next generation cryptocurrency exchange platform"}
               </p>
               <div className={styles.socials}>
                 {socials.map((x, index) => (
@@ -86,30 +101,55 @@ const Footer = () => {
             
             <div className={styles.footerNav}>
               <div className={styles.navColumn}>
-                <div className={styles.navColumn}>
-                  <h4 className={styles.navTitle}>{t('contact')}</h4>
-                  <div className={styles.navLinks}>
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                <h4 className={styles.navTitle}>{t('company') || "Company"}</h4>
+                <div className={styles.navLinks}>
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <NavLink
+                      className={styles.navLink}
+                      activeClassName={styles.active}
+                      to="/"
+                      exact
                     >
-                      <NavLink
-                        className={styles.navLink}
-                        activeClassName={styles.active}
-                        to="/contact"
-                      >
-                        {t('contactUs')}
-                      </NavLink>
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      {getNavLabel("Home")}
+                    </NavLink>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <NavLink
+                      className={styles.navLink}
+                      activeClassName={styles.active}
+                      to="/about-us"
+                      exact
                     >
-                      <a href="mailto:info@exhert.com" className={styles.navLink}>
-                        Email: info@exhert.com
-                      </a>
-                    </motion.div>
-                  </div>
+                      {getNavLabel("About Us")}
+                    </NavLink>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <NavLink
+                      className={styles.navLink}
+                      activeClassName={styles.active}
+                      to="/contact"
+                      exact
+                    >
+                      {getNavLabel("Contact")}
+                    </NavLink>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <a href="mailto:info@exhert.com" className={styles.navLink}>
+                      Email: info@exhert.com
+                    </a>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -120,7 +160,7 @@ const Footer = () => {
       <div className={styles.footerBottom}>
         <div className={cn("container", styles.container)}>
           <div className={styles.copyright}>
-            © 2025 Exhert. {t('allRightsReserved')}
+            © 2025 Exhert. {t('allRightsReserved') || "All rights reserved."}
           </div>
         </div>
       </div>

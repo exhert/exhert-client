@@ -9,17 +9,31 @@ import Theme from "../Theme";
 import LanguageToggle from "../LanguageToggle";
 import { useTranslation } from "../../utils/useTranslation";
 
+const navLinks = [
+  {
+    title: "Home",
+    url: "/",
+    exact: true,
+    translationKey: "home"
+  },
+  {
+    title: "About Us",
+    url: "/about-us",
+    exact: true,
+    translationKey: "aboutUs"
+  },
+  {
+    title: "Contact",
+    url: "/contact",
+    exact: true,
+    translationKey: "contact"
+  },
+];
+
 const Header = ({ headerWide }) => {
   const { t } = useTranslation();
   const [visibleNav, setVisibleNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
-  const navigation = [
-    {
-      title: t('contact'),
-      url: "/contact",
-    },
-  ];
   
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +47,21 @@ const Header = ({ headerWide }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Helper function to get the correct label for navigation items
+  const getNavLabel = (title) => {
+    // Simple mapping for translation keys
+    const translationMap = {
+      "Home": "home",
+      "About Us": "aboutUs",
+      "Contact": "contact"
+    };
+    
+    const key = translationMap[title];
+    // Try to get translation, if not available or empty, use the original title
+    const translated = t(key);
+    return translated && translated !== key ? translated : title;
+  };
 
   return (
     <header className={cn(styles.header, { 
@@ -59,26 +88,18 @@ const Header = ({ headerWide }) => {
         <div className={styles.wrapper}>
           <div className={cn(styles.wrap, { [styles.visible]: visibleNav })}>
             <nav className={styles.nav}>
-              {navigation.map((x, index) =>
-                x.dropdown ? (
-                  <Dropdown
-                    className={styles.dropdown}
-                    key={index}
-                    item={x}
-                    setValue={setVisibleNav}
-                  />
-                ) : (
-                  <NavLink
-                    className={styles.item}
-                    activeClassName={styles.active}
-                    onClick={() => setVisibleNav(false)}
-                    to={x.url}
-                    key={index}
-                  >
-                    {x.title}
-                  </NavLink>
-                )
-              )}
+              {navLinks.map((x, index) => (
+                <NavLink
+                  className={styles.item}
+                  activeClassName={styles.active}
+                  to={x.url}
+                  exact={x.exact}
+                  key={index}
+                  onClick={() => setVisibleNav(false)}
+                >
+                  {getNavLabel(x.title)}
+                </NavLink>
+              ))}
             </nav>
           </div>
           <div className={styles.control}>

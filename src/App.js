@@ -7,6 +7,7 @@ import { LanguageProvider } from "./utils/LanguageContext";
 // Lazy load all screens
 const Home = lazy(() => import("./screens/Home"));
 const Contact = lazy(() => import("./screens/Contact"));
+const AboutUs = lazy(() => import("./screens/AboutUs"));
 const NotFound = lazy(() => import("./screens/NotFound"));
 
 // Loading fallback component
@@ -55,6 +56,15 @@ function App() {
               render={() => (
                 <Page>
                   <Contact />
+                </Page>
+              )}
+            />
+            <Route
+              exact
+              path="/about-us"
+              render={() => (
+                <Page>
+                  <AboutUs />
                 </Page>
               )}
             />

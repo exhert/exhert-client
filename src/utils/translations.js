@@ -172,7 +172,7 @@ export const translations = {
     whyText2: "We built Exhert to eliminate these risks and provide a trustworthy alternative—a platform where users can trade with peace of mind.",
     
     ourVision: "Our Vision",
-    visionText: "We're starting in Africa, but the goal is global: a world where anyone can trade crypto securely and seamlessly, regardless of location.",
+    visionText: "We're starting in Cameroon, but the goal is to be available across Africa: a world where anyone can trade crypto securely and seamlessly, regardless of location.",
     
     joinMovement: "Join the Movement",
     joinText: "Exhert is now in early access, and during our beta phase, trading is completely free. This is your chance to be among the first to experience the future of P2P crypto trading.",
@@ -353,7 +353,7 @@ export const translations = {
     whyText2: "Nous avons créé Exhert pour éliminer ces risques et fournir une alternative fiable—une plateforme où les utilisateurs peuvent échanger en toute tranquillité d'esprit.",
     
     ourVision: "Notre Vision",
-    visionText: "Nous commençons en Afrique, mais l'objectif est mondial : un monde où chacun peut échanger des cryptomonnaies de manière sécurisée et fluide, quel que soit son emplacement.",
+    visionText: "Nous commençons au Cameroun, mais l'objectif est d'être disponible dans toute l'Afrique : un monde où chacun peut échanger des cryptomonnaies de manière sécurisée et fluide, quel que soit son emplacement.",
     
     joinMovement: "Rejoignez le Mouvement",
     joinText: "Exhert est maintenant en accès anticipé, et pendant notre phase bêta, les échanges sont complètement gratuits. C'est votre chance d'être parmi les premiers à expérimenter l'avenir du trading P2P de cryptomonnaies.",

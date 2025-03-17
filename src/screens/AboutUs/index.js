@@ -64,7 +64,7 @@ const AboutUs = () => {
     whyText1: t('whyText1') || "Most centralized exchanges don't support local payment methods. Banks block transactions. P2P traders are left to negotiate with strangers, hoping they don't get scammed.",
     whyText2: t('whyText2') || "We built Exhert to eliminate these risks and provide a trustworthy alternative—a platform where users can trade with peace of mind.",
     ourVision: t('ourVision') || "Our Vision",
-    visionText: t('visionText') || "We're starting in Africa, but the goal is global: a world where anyone can trade crypto securely and seamlessly, regardless of location.",
+    visionText: t('visionText') || "We're starting in Cameroon, but the goal is to be available across Africa: a world where anyone can trade crypto securely and seamlessly, regardless of location.",
     joinMovement: t('joinMovement') || "Join the Movement",
     joinText: t('joinText') || "Exhert is now in early access, and during our beta phase, trading is completely free. This is your chance to be among the first to experience the future of P2P crypto trading.",
     joinWaitlist: t('joinWaitlist') || "Join the Waitlist",

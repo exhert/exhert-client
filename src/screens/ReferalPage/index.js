@@ -29,7 +29,7 @@ const ReferralPage = () => {
   // Copy referral link to clipboard with enhanced feedback
   const copyReferralLink = () => {
     const baseUrl = getCurrentBaseUrl();
-    const referralLink = `${baseUrl}/early-access=${referralCode}`;
+    const referralLink = `${baseUrl}#early-access=${referralCode}`;
     
     navigator.clipboard.writeText(referralLink).then(() => {
       setIsCopied(true);

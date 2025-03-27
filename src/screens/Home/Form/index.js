@@ -31,9 +31,11 @@ const Form = ({
   const [referralCode, setReferralCode] = useState(null);
 
   useEffect(() => {
-    // Extract referral code from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('early-access');
+    // Extract referral code from URL hash
+    const hash = window.location.hash;
+    const match = hash.match(/early-access=([^&]*)/);
+    const code = match ? match[1] : null;
+    //console.log("Early ref link", code);
     
     if (code) {
       setReferralCode(code);

@@ -141,18 +141,6 @@ const ReferralPage = () => {
               <p>🔑 Generate a unique invite code</p>
               <p>🚀 Share with friends to grant early access</p>
             </motion.div>
-
-            <motion.div 
-              className={styles.referralBenefits}
-              variants={itemVariants}
-            >
-              <h3>Exclusive Early Access Benefits</h3>
-              <ul>
-                <li>First to explore cutting-edge features</li>
-                <li>Provide direct feedback to our team</li>
-                <li>Unlock special founder status</li>
-              </ul>
-            </motion.div>
           </motion.div>
         </motion.section>
       </div>

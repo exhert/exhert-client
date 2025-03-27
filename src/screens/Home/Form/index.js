@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import styles from "./Form.module.sass";
 import { toast } from "react-toastify";
@@ -12,6 +12,7 @@ const createEarlyAccessMutation = `
       id
       email
       country
+      referralCode
     }
   }
 `;
@@ -27,12 +28,34 @@ const Form = ({
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [referralCode, setReferralCode] = useState(null);
+
+  useEffect(() => {
+    // Extract referral code from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('early-access');
+    
+    if (code) {
+      setReferralCode(code);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+      // Prepare the input object conditionally
+      const input = {
+        email,
+        country: "CM" // Default country code for Cameroon
+      };
+
+      // Add referral code only if it exists
+      if (referralCode) {
+        input.referralCode = referralCode;
+      }
+
       const response = await fetch(GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -40,12 +63,7 @@ const Form = ({
         },
         body: JSON.stringify({
           query: createEarlyAccessMutation,
-          variables: {
-            input: {
-              email,
-              country: "CM", // Default country code for Cameroon
-            }
-          }
+          variables: { input }
         })
       });
 
@@ -100,6 +118,11 @@ const Form = ({
           {isSubmitting ? (loadingText || t('joining')) : (buttonText || t('joinWaitlistBtn'))}
         </button>
       </div>
+      {referralCode && (
+        <div className={styles.referralInfo}>
+          Referral Code: {referralCode}
+        </div>
+      )}
     </form>
   );
 };

@@ -83,7 +83,7 @@ const ReferralPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Be Among the First to Experience Tomorrow
+            Be Among the First to Experience Exhert
           </motion.h2>
         </div>
       </div>

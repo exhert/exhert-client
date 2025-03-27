@@ -201,7 +201,7 @@ $light-text: #ffffff
     
     li
       font-size: 16px
-      color: rgba(255, 255, 255, 0.979)
+      color: rgba(255, 255, 255, 0.85)  // Reduced opacity for better contrast
       margin-bottom: 10px
       position: relative
       padding-left: 30px
@@ -210,5 +210,10 @@ $light-text: #ffffff
         content: '✓'
         position: absolute
         left: 0
-        color: rgba(8, 8, 8, 0.979)
+        color: $primary-color
         font-weight: bold
+
+  // Optional: Add a dark mode variant if needed
+  +dark
+    li
+      color: rgba(255, 255, 255, 0.9)  // Slightly more opaque in dark mode

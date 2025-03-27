@@ -1,0 +1,214 @@
+@import ../../styles/helpers
+
+// Original Color Variables
+$primary-color: #ffc000
+$secondary-color: #1b39bb
+$dark-bg: #0a0a0a
+$light-bg: #ffffff
+$dark-text: #121212
+$light-text: #ffffff
+
+// Responsive Mixins
+@mixin desktop
+  @media screen and (max-width: 1200px)
+    @content
+
+@mixin tablet
+  @media screen and (max-width: 992px)
+    @content
+
+@mixin mobile
+  @media screen and (max-width: 576px)
+    @content
+
+.referralPage
+  color: $n2
+  
+  +dark
+    color: $n8
+
+.container
+  max-width: 1200px
+  margin: 0 auto
+  padding: 0 20px
+  width: 100%
+  box-sizing: border-box
+
+  @include desktop
+    max-width: 1024px
+
+  @include tablet
+    max-width: 768px
+
+  @include mobile
+    padding: 0 16px
+
+.hero
+  position: relative
+  padding: 160px 0 80px
+  background: linear-gradient(to bottom, #0a0a0a, #121212)
+  overflow: hidden
+  
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+    opacity: 0.03
+    z-index: 1
+  
+  .container
+    position: relative
+    z-index: 2
+  
+  @include mobile
+    padding: 120px 0 60px
+
+.title
+  font-size: 56px
+  line-height: 1.2
+  font-weight: 700
+  color: $light-text
+  margin-bottom: 24px
+  max-width: 800px
+  
+  @include tablet
+    font-size: 48px
+  
+  @include mobile
+    font-size: 36px
+    margin-bottom: 16px
+    text-align: center
+
+.subtitle
+  font-size: 24px
+  line-height: 1.4
+  font-weight: 500
+  color: $primary-color
+  max-width: 600px
+  
+  @include tablet
+    font-size: 20px
+  
+  @include mobile
+    font-size: 18px
+    text-align: center
+
+.referralSection
+  padding: 80px 0
+  text-align: center
+  
+  @include tablet
+    padding: 60px 0
+  
+  @include mobile
+    padding: 40px 0
+
+.referralContent
+  max-width: 600px
+  margin: 0 auto
+  width: 100%
+
+.generateButton
+  display: inline-block
+  padding: 16px 40px
+  background: $primary-color
+  color: $dark-bg
+  font-size: 18px
+  font-weight: 600
+  border-radius: 5px
+  text-decoration: none
+  transition: all 0.3s ease
+  box-shadow: 0 8px 20px rgba($primary-color, 0.3)
+  margin-bottom: 30px
+  width: 100%
+  max-width: 350px
+  
+  &:hover
+    background: darken($primary-color, 5%)
+    box-shadow: 0 12px 24px rgba($primary-color, 0.4)
+  
+  @include mobile
+    padding: 14px 32px
+    font-size: 16px
+
+.referralCodeContainer
+  background: rgba(255, 255, 255, 0.05)
+  border-radius: 16px
+  padding: 30px
+  margin-bottom: 30px
+  width: 100%
+
+.referralCodeDisplay
+  background: rgba(255, 255, 255, 0.1)
+  border-radius: 8px
+  padding: 15px
+  margin-bottom: 20px
+  word-break: break-all
+  
+  span
+    font-size: 24px
+    font-weight: 600
+    color: $primary-color
+    letter-spacing: 2px
+
+    @include mobile
+      font-size: 18px
+
+.copyButton
+  display: inline-block
+  padding: 12px 30px
+  background: $secondary-color
+  color: $light-text
+  font-size: 16px
+  font-weight: 500
+  border-radius: 5px
+  transition: all 0.3s ease
+  width: 100%
+  max-width: 250px
+  
+  &:hover
+    background: lighten($secondary-color, 10%)
+
+.referralInstructions
+  color: $n3
+  margin-bottom: 30px
+  
+  +dark
+    color: $n6
+  
+  p
+    font-size: 16px
+    line-height: 1.6
+    margin-bottom: 10px
+
+.referralBenefits
+  background: rgba(255, 255, 255, 0.05)
+  border-radius: 16px
+  padding: 30px
+  
+  h3
+    font-size: 20px
+    color: $primary-color
+    margin-bottom: 20px
+  
+  ul
+    list-style-type: none
+    padding: 0
+    
+    li
+      font-size: 16px
+      color: rgba(255, 255, 255, 0.979)
+      margin-bottom: 10px
+      position: relative
+      padding-left: 30px
+      
+      &::before
+        content: '✓'
+        position: absolute
+        left: 0
+        color: $primary-color
+        font-weight: bold

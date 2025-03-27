@@ -8,6 +8,7 @@ import { LanguageProvider } from "./utils/LanguageContext";
 const Home = lazy(() => import("./screens/Home"));
 const Contact = lazy(() => import("./screens/Contact"));
 const AboutUs = lazy(() => import("./screens/AboutUs"));
+const ReferralPage = lazy(() => import("./screens/ReferalPage"))
 const NotFound = lazy(() => import("./screens/NotFound"));
 
 // Loading fallback component
@@ -65,6 +66,15 @@ function App() {
               render={() => (
                 <Page>
                   <AboutUs />
+                </Page>
+              )}
+            />
+            <Route
+              exact
+              path="/leads"
+              render={() => (
+                <Page>
+                  <ReferralPage />
                 </Page>
               )}
             />

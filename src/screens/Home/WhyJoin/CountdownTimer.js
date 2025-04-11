@@ -7,7 +7,7 @@ const CountdownTimer = () => {
   const { t } = useTranslation();
   
   const calculateTimeLeft = () => {
-    const targetDate = new Date('2025-04-30T00:00:00');
+    const targetDate = new Date('2025-05-30T00:00:00');
     const now = new Date();
     const difference = targetDate - now;
 

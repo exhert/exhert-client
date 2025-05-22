@@ -301,7 +301,7 @@ const WhyJoin = () => {
             <div className={styles.urgencyContent}>
               <h3 className={styles.urgencyTitle}>{t('limitedSpots')}</h3>
               <p className={styles.urgencyText}>{t('secureSpot')}</p>
-              <CountdownTimer />
+              {/* <CountdownTimer /> */}
             </div>
             <motion.button 
               className={styles.joinButton}

@@ -6,7 +6,7 @@ import Form from "../Form";
 import Icon from "../Icon";
 import Image from "../Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faTiktok, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faTiktok, faTwitter, faInstagram, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
 import { useTranslation } from "../../utils/useTranslation";
 
@@ -14,7 +14,7 @@ const socials = [
   {
     title: faFacebook,
     size: "18",
-    url: "https://www.facebook.com/profile.php?id=61561077623847",
+    url: "https://www.facebook.com/profile.php?id=61575662481516",
     label: "Facebook"
   },
   {
@@ -22,6 +22,12 @@ const socials = [
     size: "18",
     url: "https://x.com/EXHERTexchange?t=s5Jd3JQUc8RNTCT8DVlO9g&s=08",
     label: "Twitter"
+  },
+  {
+    title: faDiscord,
+    size: "18",
+    url: "https:/discord.com/invite/PQrxYHJB",
+    label: "Discord"
   },
   {
     title: faInstagram,
